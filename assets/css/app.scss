@@ -1,0 +1,21 @@
+// helpers importation
+@import 'helpers/bootstrap.variables';
+@import 'helpers/color';
+@import 'helpers/font';
+@import 'helpers/mixins.border';
+
+// librairies
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+
+// components importation
+@import 'components/body';
+@import 'components/footer';
+@import 'components/header';
+@import 'components/html';
+
+// pages importation
+@import 'pages/index';
+
+// layouts importation
+@import 'layouts/responsive.index';

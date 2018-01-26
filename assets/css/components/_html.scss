@@ -1,0 +1,4 @@
+html {
+  font-size: .625em; /* IE8+ */
+  font-size: calc(1em * 0.625)  /* Bug fix in IE9-IE11 */
+}

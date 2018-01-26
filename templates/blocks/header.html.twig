@@ -1,0 +1,58 @@
+{% if class is defined %}
+    {% set class_header = class|join(' ') %}
+{% endif %}
+<header
+        {% if class_header is defined %}
+        class="{{ class_header }}"
+        {% endif %}
+>
+    <nav class="navbar">
+        <div class="left d-none d-lg-block">
+            <a href="/">
+                <span class="site-logo">MP</span>
+                <span class="site-name">My Profile</span>
+            </a>
+        </div>
+        <div class="center">
+            <a href="http://fr.linkedin.com/in/nicolas-coudenne-132b06b5" target="_blank" class="btn btn-md header-btn">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                <span class="d-none d-md-inline header-buttons-label">Linkedin</span>
+            </a>
+            <a href="https://github.com/2latlantik" target="_blank" class="btn btn-md header-btn">
+                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                <span class="d-none d-md-inline header-buttons-label">Github</span>
+            </a>
+            <a href="http://fr.viadeo.com/fr/profile/nicolas.coudenne" target="_blank" class="btn btn-md header-btn">
+                <i class="fa fa-viadeo" aria-hidden="true"></i>
+                <span class="d-none d-md-inline header-buttons-label">Viadeo</span>
+            </a>
+        </div>
+        <div class="right">
+            {% if user %}
+                <ul class="nav-profile">
+                    <li class="notifications">
+
+                        <i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <sup class="counter">n</sup>
+                    </li>
+                    <li class="profile">
+                        <a href="#" class="link-profile dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true">
+                            <div class="logo">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </div>
+                            <span class="user d-none d-sm-inline">John Doe</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown">
+                            <a class="dropdown-item" href="#">Profil</a>
+                        </div>
+                    </li>
+                </ul>
+            {% else %}
+                <a href="#" class="btn btn-md header-btn">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    <span class="d-none d-md-inline header-buttons-label">Se connecter</span>
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

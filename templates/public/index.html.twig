@@ -1,0 +1,20 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %} My Profile {% endblock %}
+
+{% block classbody %}class="index"{% endblock %}
+
+{% block body %}
+    {% include 'blocks/header.html.twig' with {
+            'user'  : null,
+            'class' : {0:'index'}
+        }
+        only
+    %}
+    {% include 'blocks/main.index.html.twig' %}
+    {% include 'blocks/footer.html.twig' with {
+            'class' : {0:'index'}
+        }
+        only
+    %}
+{% endblock %}

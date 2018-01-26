@@ -1,0 +1,49 @@
+
+@include media-breakpoint-down(sm) {
+  .index-main-content {
+    min-height: 90rem;
+    flex-direction: column;
+    .subject {
+      flex-grow: 1;
+    }
+    .navigation {
+      flex-grow:2;
+    }
+  }
+  footer {
+    &.index{
+      position: initial;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .index-main-content {
+    .navigation {
+      .find {
+        .find-item {
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-height: 540px) {
+  .index-main-content {
+    min-height: 54rem;
+  }
+  footer {
+    &.index{
+      position: initial;
+    }
+  }
+}
+
+
+@include media-breakpoint-up(sm) {
+  .navbar .header-btn {
+    margin: 0 2.5rem;
+  }
+}
