@@ -1,0 +1,106 @@
+/*
+      Index page
+ */
+
+.index-main-content {
+  height:100vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: row;
+  .index-main-content-item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+  .subject {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .subject-content {
+      width: 100%;
+      font-size: 2em;
+      line-height: 5rem;
+      font-family: Pacifico, serif;
+      text-align: center;
+      border: 0.1rem solid $secondColor;
+      border-radius: 2rem;
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    .navigation-item {
+      flex-grow : 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+    }
+    .find {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .find-item {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        margin: 0 5rem;
+        .card {
+          background-color: rgba(255, 255, 255, 0.4);
+          border: 0.1rem solid $secondColor;
+          border-radius: 2rem;
+        }
+        .card .card-header {
+          font-size: 1.6rem;
+          font-weight: bold;
+        }
+      }
+    }
+    .profiles {
+      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .profiles-item {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        .card {
+          margin: auto;
+          background-color: rgba(255, 255, 255, 0.4);
+          border: 0.1rem solid $secondColor;
+          border-radius: 2rem;
+        }
+        .card .card-header {
+          font-size: 1.6rem;
+          font-weight: bold;
+        }
+      }
+    }
+    .my-carousel {
+      display: flex;
+      flex-direction: column;
+      .my-carousel-item {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        &.btn-display {
+          display: flex;
+          min-height: 4rem;
+          .btn-item {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0;
+            &.btn-item-left {
+              text-align: left;
+            }
+            &.btn-item-right {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}

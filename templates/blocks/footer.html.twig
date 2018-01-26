@@ -1,0 +1,10 @@
+{% if class is defined %}
+    {% set class_footer = class|join(' ') %}
+{% endif %}
+<footer
+        {% if class_footer is defined %}
+            class="{{ class_footer }}"
+        {% endif %}
+>
+    <span>© 2018 NICOLAS COUDENNE - tous droits réservés</span>
+</footer>
