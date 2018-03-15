@@ -1,34 +1,25 @@
+{% include 'blocks/flash_messages.html.twig' with {
+    'class' : 'index'
+    }
+    only
+%}
 <main role="main" class="container-fluid index-main-content" >
     <div class="index-main-content-item subject">
         <div class="subject-content">
-            Créez un profil professionnel à votre image
+            {{ "label.homepage.goal_site"|trans() }}
         </div>
     </div>
     <div class="index-main-content-item navigation">
         <div class="navigation-item find">
             <div class="find-item">
                 <div class="card">
-                    <div class="card-header">
-                        Enregistrez-vous
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="_username">Adresse mail</label>
-                                <input type="email" class="form-control" id="_username" aria-describedby="emailLogin" placeholder="Entrez un email">
-                            </div>
-                            <div class="form-group">
-                                <label for="_password">Mot de passe</label>
-                                <input type="password" class="form-control" id="_password" placeholder="Entrez un mot de passe">
-                            </div>
-                            <button type="submit" class="btn btn-primary">S'enregistrer</button>
-                        </form>
-                    </div>
+                    {{ render(controller(
+                        'App\\Controller\\Security\\SecurityController::login'
+                    )) }}
                 </div>
             </div>
         </div>
         <div class="navigation-item profiles">
-
             <div class="row col-6 col-md-8 profiles-item my-carousel">
                 <div class="my-carousel-item lead btn-display">
                     <div class="btn-item btn-item-left">

@@ -1,6 +1,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    locale: 'fr'
+    app.registration.email_sender: nicolascoudenne@gmail.com
 
 services:
     # default configuration for services in *this* file
@@ -25,3 +27,28 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Event\RegistrationMailerSubscriber:
+        arguments:
+            $sender: '%app.registration.email_sender%'
+
+    App\Event\AuthenticationMailerSubscriber:
+            arguments:
+                $sender: '%app.registration.email_sender%'
+
+    App\Annotation\TokenableManager:
+        arguments:
+            $reader: '@annotations.reader'
+
+    App\EventListener\UserRegisterTokenSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    App\EventListener\PasswordTokenSubscriber:
+            tags:
+                - { name: doctrine.event_subscriber, connection: default }
+
+    App\Form\Extension\FormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType}
+

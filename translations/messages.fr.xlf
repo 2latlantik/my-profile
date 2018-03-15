@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="action.profile.to">
+                <source>action.profile.to</source>
+                <target>Profil</target>
+            </trans-unit>
+            <trans-unit id="action.login">
+                <source>action.login</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="action.signOut">
+                <source>action.signOut</source>
+                <target>Se déconnecter</target>
+            </trans-unit>
+            <trans-unit id="action.register.do">
+                <source>action.register.do</source>
+                <target>S'enregistrer</target>
+            </trans-unit>
+            <trans-unit id="action.account_token.do">
+                <source>action.account_token.do</source>
+                <target>Recevoir le mail d'activation</target>
+            </trans-unit>
+            <trans-unit id="action.password_lost.do">
+                <source>action.password_lost.do</source>
+                <target>Mot de passe oublié</target>
+            </trans-unit>
+            <trans-unit id="action.new_password.do">
+                <source>action.new_password.do</source>
+                <target>Redemander un mot de passe</target>
+            </trans-unit>
+            <trans-unit id="action.password_define.do">
+                <source>action.password_define.do</source>
+                <target>Définir un nouveau mot de passe</target>
+            </trans-unit>
+
+            <trans-unit id="title.home">
+                <source>title.home</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="title.register">
+                <source>title.register</source>
+                <target>Ouvrir un compte sur my-profile.fr</target>
+            </trans-unit>
+            <trans-unit id="title.receive_account_token">
+                <source>title.receive_account_token</source>
+                <target>Recevoir un nouveau mail d'activation de compte !</target>
+            </trans-unit>
+            <trans-unit id="title.sub.receive_account_token">
+                <source>title.sub.receive_account_token</source>
+                <target>Envoyer un mail à l'adresse %email% !</target>
+            </trans-unit>
+            <trans-unit id="title.password_lost">
+                <source>title.password_lost</source>
+                <target>Mot de passe oublié</target>
+            </trans-unit>
+            <trans-unit id="title.password_new">
+                <source>title.password_new</source>
+                <target>Définir un nouveau mot de passe</target>
+            </trans-unit>
+
+            <trans-unit id="label.homepage.goal_site">
+                <source>label.homepage.goal_site</source>
+                <target>Créez un profil professionnel à votre image</target>
+            </trans-unit>
+
+            <trans-unit id="message.receive_account_token">
+                <source>message.receive_account_token</source>
+                <target>Le lien que vous avez suivi est corrompu ou n'est plus valide. Votre compte n'étant pas activé, vous pouvez demander à recevoir un nouveau mail d'activiation. </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

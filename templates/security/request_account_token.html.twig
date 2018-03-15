@@ -1,0 +1,22 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block page_title 'title.receive_account_token'|trans() %}
+
+{% block classbody %}class="security"{% endblock %}
+
+{% block contentbody %}
+<div class="security-main-content">
+    <div class="card security-main-content-item">
+        <div class="card-header">
+            <h1>{{ "title.receive_account_token"|trans() }}</h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ "title.sub.receive_account_token"|trans({'%email%': user.email}) }}</h5>
+            <p class="card-text">{{ "message.receive_account_token"|trans() }}</p>
+            <a href="{{ path('security_registration_token', {key: app.request.get('key')}) }}" class="btn btn-primary">{{ "action.account_token.do"|trans() }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% set name = 'user' %}

@@ -1,6 +1,6 @@
 
 body {
-  &.index {
+  &.index, &.security {
     background-image: url('../../images/body-bg.jpg');
     background-size: cover;
   }

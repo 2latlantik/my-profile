@@ -1,12 +1,12 @@
 {% extends 'layout/base.html.twig' %}
 
-{% block title %} My Profile {% endblock %}
+{% block page_title 'title.home'|trans() %}
 
-{% block classbody %}class="index"{% endblock %}
+{% block classbody 'class="index"'%}
 
 {% block body %}
     {% include 'blocks/header.html.twig' with {
-            'user'  : null,
+            'user'  : app.user,
             'class' : {0:'index'}
         }
         only

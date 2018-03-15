@@ -1,0 +1,25 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block classbody 'class="security"' %}
+
+{% block body %}
+    {% include 'blocks/header.html.twig' with {
+            'user'  : app.user,
+            'class' : {0:name}
+        }
+        only
+    %}
+    <main class="container container-layout">
+        {% include 'blocks/flash_messages.html.twig' with {
+                'class' : name
+            }
+            only
+        %}
+        {% block contentbody %}{% endblock %}
+    </main>
+    {% include 'blocks/footer.html.twig' with {
+            'class' : {0:name}
+        }
+        only
+    %}
+{% endblock %}

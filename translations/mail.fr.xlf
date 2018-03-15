@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="user_created.subject">
+                <source>user_created.subject</source>
+                <target>Votre compte utilisateur a été créé !</target>
+            </trans-unit>
+            <trans-unit id="user_created.description">
+                <source>user_created.description</source>
+                <target>
+                    <![CDATA[<div>Votre compte utilisateur a été créée. Les informations de connexions sont les suivantes : <br><ul><li>login : %login%</li><li>mot de passe : %password%</li></ul><br> Vous devez auparavant  activer votre compte en cliquant sur le lien suivant <a href="%link%">activer vote compte</a><div>]]></target>
+            </trans-unit>
+            <trans-unit id="user_confirmed.subject">
+                <source>user_confirmed.subject</source>
+                <target>Votre compte utilisateur a été activé !</target>
+            </trans-unit>
+            <trans-unit id="user_confirmed.description">
+                <source>user_confirmed.description</source>
+                <target>
+                    <![CDATA[<div>Votre adresse e-mail a été vérifié et votre compte utilisateur a été définitivement activé.<div>]]></target>
+            </trans-unit>
+            <trans-unit id="user_request_account_token.subject">
+                <source>user_request_account_token.subject</source>
+                <target>Vous avez demandé un nouveau lien d'activation !</target>
+            </trans-unit>
+            <trans-unit id="user_request_account_token.description">
+                <source>user_request_account_token.description</source>
+                <target>
+                    <![CDATA[<div>Votre compte utilisateur est en attente de confirmation. Vous devez activer votre compte en cliquant sur le lien suivant <a href="%link%">activer vote compte</a><div>]]></target>
+            </trans-unit>
+            <trans-unit id="user_request_password.subject">
+                <source>user_request_password.subject</source>
+                <target>Vous avez demandé un nouveau mot de passe !</target>
+            </trans-unit>
+            <trans-unit id="user_request_password.description">
+                <source>user_request_password.description</source>
+                <target>
+                    <![CDATA[<div>Vous avez demandé un nouveau mot de passe. Vous pourrez en créér un, en cliquant sur le lien suivant <a href="%link%">Renseigner un nouveau mot de passe</a>. Ce lien sera actif jusqu'au %date_expiration% à %hour_expiration%.<div>]]></target>
+            </trans-unit>
+            <trans-unit id="password_new.subject">
+                <source>password_new.subject</source>
+                <target>Votre nouveau mot de passe a été défini !</target>
+            </trans-unit>
+            <trans-unit id="password_new.description">
+                <source>password_new.description</source>
+                <target>
+                    <![CDATA[<div>Votre compte utilisateur dispose du mot de passe que vous avez défini. Les informations de connexions sont les suivantes : <br><ul><li>login : %login%</li><li>mot de passe : %password%</li></ul><br>]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
