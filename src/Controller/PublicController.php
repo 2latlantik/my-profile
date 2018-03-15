@@ -6,11 +6,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PublicController extends Controller
 {
-
-        /**
-         * @Route("/")
-         */
-    public function indexPage()
+    /**
+     * @Route(
+     *     "/",
+     *     name="homepage"
+     * )
+     */
+    public function index()
     {
         return $this->render('public/index.html.twig');
     }

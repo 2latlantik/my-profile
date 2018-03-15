@@ -10,12 +10,14 @@
 
 // components importation
 @import 'components/body';
+@import 'components/flash_messages';
 @import 'components/footer';
 @import 'components/header';
 @import 'components/html';
 
 // pages importation
 @import 'pages/index';
+@import 'pages/security';
 
 // layouts importation
 @import 'layouts/responsive.index';

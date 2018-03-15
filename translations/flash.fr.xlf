@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="success.user.account_confirmed">
+                <source>success.user.account_confirmed</source>
+                <target>Votre adresse e-mail a été vérifiée et votre compte a été définitivement activé.</target>
+            </trans-unit>
+            <trans-unit id="success.user.account_token_sent">
+                <source>succes.user.account_token_sent</source>
+                <target>Un lien d'activation vous a été envoyé afin de confirmer votre e-mail et activer votre compte.</target>
+            </trans-unit>
+            <trans-unit id="success.user.registered">
+                <source>success.user.registered</source>
+                <target>Votre compte a été créé. Un mail vous a été envoyé pour valider votre e-mail et finaliser votre enregistrement.</target>
+            </trans-unit>
+            <trans-unit id="success.user.password_requested_sent">
+                <source>success.user.password_requested_sent</source>
+                <target>Un mail vous a été envoyé afin de redéfinir un nouveau mot de passe.</target>
+            </trans-unit>
+            <trans-unit id="success.new_password_sent">
+                <source>success.new_password_sent</source>
+                <target>Votre nouveau mot de passe a été défini.</target>
+            </trans-unit>
+
+            <trans-unit id="warning.user.account_let_confirmed">
+                <source>user.account_let_confirmed</source>
+                <target>Votre compte est déjà activé.</target>
+            </trans-unit>
+            <trans-unit id="warning.user.not_recognized">
+                <source>warning.user.not_recognized</source>
+                <target>L'identifiant indiqué n'est pas reconnu.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

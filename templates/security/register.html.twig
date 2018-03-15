@@ -1,0 +1,24 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block page_title 'title.register'|trans() %}
+
+{% block contentbody %}
+    <div class="security-main-content">
+        <div class="card security-main-content-item">
+            <div class="card-header">
+                <h1>{{ "title.register"|trans() }}</h1>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.plainPassword.first) }}
+                {{ form_row(form.plainPassword.second) }}
+                <button type="submit" class="btn btn-primary">{{ "action.register.do"|trans() }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% set name = 'user' %}

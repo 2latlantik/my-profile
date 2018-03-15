@@ -1,0 +1,18 @@
+<div class="card-header">
+    <h1>{{ "title.login"|trans() }}</h1>
+</div>
+<div class="card-body">
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+    {{ form_start(form, {'action': path('login'), 'method': 'POST'}) }}
+    {{ form_row(form._username) }}
+    {{ form_row(form._password) }}
+    <button type="submit" class="btn btn-primary">{{ "action.login"|trans() }}</button>
+    <a href="{{ path('security_authentication_password_request') }}"
+       class="btn btn-light">{{ "action.password_lost.do"|trans() }}</a>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    {{ form_end(form) }}
+</div>

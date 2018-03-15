@@ -31,7 +31,6 @@
             {% if user %}
                 <ul class="nav-profile">
                     <li class="notifications">
-
                         <i class="fa fa-bell-o" aria-hidden="true"></i>
                         <sup class="counter">n</sup>
                     </li>
@@ -40,17 +39,18 @@
                             <div class="logo">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </div>
-                            <span class="user d-none d-sm-inline">John Doe</span>
+                            <span class="user d-none d-sm-inline">{{ user.username }}</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown">
-                            <a class="dropdown-item" href="#">Profil</a>
+                            <a class="dropdown-item" href="#">{{ "action.profile.to"|trans() }}</a>
+                            <a class="dropdown-item" href="{{ path('logout') }}">{{ "action.signOut"|trans() }}</a>
                         </div>
                     </li>
                 </ul>
             {% else %}
-                <a href="#" class="btn btn-md header-btn">
+                <a href="{{ path('security_registration_register') }}" class="btn btn-md header-btn">
                     <i class="fa fa-key" aria-hidden="true"></i>
-                    <span class="d-none d-md-inline header-buttons-label">Se connecter</span>
+                    <span class="d-none d-md-inline header-buttons-label">{{ "action.register.do"|trans() }}</span>
                 </a>
             {% endif %}
         </div>

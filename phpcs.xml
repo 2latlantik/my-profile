@@ -5,6 +5,8 @@
 
     <file>src/</file>
 
+    <exclude-pattern>src/Migrations</exclude-pattern>
+
     <rule ref="PSR2"/>
 
 </ruleset>

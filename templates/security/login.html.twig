@@ -1,0 +1,13 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block page_title 'title.login'|trans() %}
+
+{% block contentbody %}
+    <div class="security-main-content">
+        <div class="card security-main-content-item">
+            {% include 'security/partials/_login.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% set name = 'user' %}
