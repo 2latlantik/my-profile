@@ -2,7 +2,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
-    app.registration.email_sender: nicolascoudenne@gmail.com
+    app.registration.email_sender: contact@my-profile.fr
 
 services:
     # default configuration for services in *this* file
