@@ -3,6 +3,7 @@
 parameters:
     locale: 'fr'
     app.registration.email_sender: contact@my-profile.fr
+    files_directory: '%kernel.project_dir%/public/uploads'
 
 services:
     # default configuration for services in *this* file
@@ -52,3 +53,10 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType}
 
+    App\Service\FileManager:
+        arguments:
+            $targetDirectory: '%files_directory%'
+
+    App\EventListener\FileListener:
+        tags:
+            - { name: doctrine.event_listener, event: preFlush }

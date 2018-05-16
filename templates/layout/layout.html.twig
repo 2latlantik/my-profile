@@ -9,7 +9,7 @@
         }
         only
     %}
-    <main class="container container-layout">
+    <main class="container container-{{ name }}">
         {% include 'blocks/flash_messages.html.twig' with {
                 'class' : name
             }

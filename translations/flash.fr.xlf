@@ -22,6 +22,10 @@
                 <source>success.new_password_sent</source>
                 <target>Votre nouveau mot de passe a été défini.</target>
             </trans-unit>
+            <trans-unit id="success.profile.updated">
+                <source>success.profile.updated</source>
+                <target>Votre profil a été mis à jour.</target>
+            </trans-unit>
 
             <trans-unit id="warning.user.account_let_confirmed">
                 <source>user.account_let_confirmed</source>
