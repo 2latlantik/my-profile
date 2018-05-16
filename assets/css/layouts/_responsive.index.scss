@@ -14,7 +14,7 @@
     span {
       width: 100%;
     }
-    &.index{
+    &.index, &.security{
       position: initial;
     }
   }
@@ -38,7 +38,7 @@
     min-height: 54rem;
   }
   footer {
-    &.index{
+    &.index, &.security {
       position: initial;
     }
   }

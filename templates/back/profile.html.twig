@@ -1,0 +1,27 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block page_title 'title.profile'|trans() %}
+
+{% block contentbody %}
+    <div class="row py-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{ 'title.profile'|trans() }}</h1>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    {{ form_row(form.surname) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.birthDate) }}
+                    {{ form_row(form.gender) }}
+                    {{ form_row(form.profilePicture) }}
+                    <button type="submit" class="btn btn-primary">{{ "action.profile.do"|trans() }}</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% set name = 'back' %}

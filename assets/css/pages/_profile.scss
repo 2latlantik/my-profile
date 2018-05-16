@@ -1,0 +1,64 @@
+
+.upload_context {
+  font-size: 1.2rem;
+  background-color: #c8dadf;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  .item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.upload_area {
+  &.is-dragover
+  {
+    outline-offset: -20px;
+    outline-color: #c8dadf;
+    background-color: #fff;
+  }
+}
+
+.has-advanced-upload {
+  background-color: white;
+  outline: 2px dashed black;
+  outline-offset: -10px;
+}
+
+.upload_file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index:-1;
+  &+ label {
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+      color: #39bfd3;
+    }
+  }
+}
+
+.svg-icon {
+  width: 10em;
+  height: 10em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}

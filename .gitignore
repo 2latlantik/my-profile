@@ -9,12 +9,14 @@
 ###> symfony/webpack-encore-pack ###
 /node_modules/
 /public/build/
+/public/uploads/
 /public/.htaccess
 ###< symfony/webpack-encore-pack ###
 
 ###> symfony/phpunit-bridge ###
 .phpunit
 /phpunit.xml
+/phpmd.xml
 ###< symfony/phpunit-bridge ###
 
 .idea/
