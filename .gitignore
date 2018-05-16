@@ -10,7 +10,6 @@
 /node_modules/
 /public/build/
 /public/uploads/
-/public/.htaccess
 ###< symfony/webpack-encore-pack ###
 
 ###> symfony/phpunit-bridge ###
