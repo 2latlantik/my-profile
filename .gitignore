@@ -20,4 +20,5 @@
 
 .idea/
 php-cs-fixer.phar
+.php_cs.cache
 
