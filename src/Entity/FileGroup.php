@@ -60,9 +60,9 @@ class FileGroup
     }
 
     /**
-     * @return PersistentCollection
+     * @return mixed
      */
-    public function getFiles(): PersistentCollection
+    public function getFiles()
     {
         return $this->files;
     }
