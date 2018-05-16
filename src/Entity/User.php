@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Class User
@@ -101,6 +102,14 @@ class User implements UserInterface, \Serializable
     public function __toString()
     {
         return $this->email ?: '';
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
@@ -301,5 +310,19 @@ class User implements UserInterface, \Serializable
      */
     public function getSalt()
     {
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     * @param $payload
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if (strpos($this->username, '@') !== false) {
+            $context->buildViolation('validators.user.username')
+                ->atPath('username')
+                ->addViolation();
+        }
     }
 }

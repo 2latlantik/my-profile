@@ -1,9 +1,10 @@
 const GoogleFontsPlugin = require('google-fonts-webpack-plugin');
 
 var Encore = require('@symfony/webpack-encore');
+var path = require('path');
 
 Encore
-    // the project directory where compiled assets will be stored
+// the project directory where compiled assets will be stored
     .setOutputPath('public/build/')
 
     // the public path used by the web server to access the previous directory
@@ -36,4 +37,12 @@ Encore
     }))
 ;
 
-module.exports = Encore.getWebpackConfig();
+config = Encore.getWebpackConfig();
+
+config.resolve = {
+    alias: {
+        'jquery': path.join(__dirname,  'node_modules/jquery/src/jquery')
+    }
+};
+
+module.exports = config;
