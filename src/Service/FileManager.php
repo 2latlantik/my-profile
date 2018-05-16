@@ -36,7 +36,6 @@ class FileManager
      */
     public function upload(File $file) :string
     {
-
         $uploadedFile = $file->getFile();
 
         $fileName = md5(uniqid()).'.'.$uploadedFile->guessExtension();
@@ -51,7 +50,6 @@ class FileManager
      */
     public function deletePrevFile(File $file): void
     {
-
         $fileSystem = new Filesystem();
 
         if ($fileSystem->exists($file->getPath())) {
