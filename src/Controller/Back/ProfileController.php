@@ -25,7 +25,6 @@ class ProfileController extends Controller
      */
     public function profilePage(Request $request, ProfileManager $profileManager) :Response
     {
-
         $profile = $profileManager->getProfile();
 
         $form = $this->createForm(ProfileType::class, $profile);
