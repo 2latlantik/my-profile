@@ -9,6 +9,8 @@
         "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
         "symfony/debug-pack": "^1.0",
+        "symfony/expression-language": "^4.0",
+        "symfony/filesystem": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
@@ -26,6 +28,7 @@
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "2latlantik/symfony-my-cs": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "symfony/dotenv": "^4.0",
         "symfony/profiler-pack": "^1.0",
@@ -63,6 +66,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "my-cs-install": [
+            "SymfonyMyCs\\Git\\Hooks\\PostInstall::installHooks"
         ]
     },
     "conflict": {

@@ -34,7 +34,10 @@
                 <source>action.password_define.do</source>
                 <target>Définir un nouveau mot de passe</target>
             </trans-unit>
-
+            <trans-unit id="action.profile.do">
+                <source>action.profile.do</source>
+                <target>Mettre à jour le profil</target>
+            </trans-unit>
             <trans-unit id="title.home">
                 <source>title.home</source>
                 <target>Accueil</target>
@@ -62,6 +65,10 @@
             <trans-unit id="title.password_new">
                 <source>title.password_new</source>
                 <target>Définir un nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="title.profile">
+                <source>title.profile</source>
+                <target>Définissez votre profil</target>
             </trans-unit>
 
             <trans-unit id="label.homepage.goal_site">

@@ -22,6 +22,38 @@
                 <source>label.password_repeat</source>
                 <target>Répéter le mot de passe</target>
             </trans-unit>
+            <trans-unit id="label.surname">
+                <source>label.surname</source>
+                <target>Nom de famille</target>
+            </trans-unit>
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="label.birth_date">
+                <source>label.birth_date</source>
+                <target>Date de naissance</target>
+            </trans-unit>
+            <trans-unit id="label.profile_picture">
+                <source>label.profile_picture</source>
+                <target>Photo de profil</target>
+            </trans-unit>
+            <trans-unit id="label.gender.m">
+                <source>label.gender.m</source>
+                <target>Masculin</target>
+            </trans-unit>
+            <trans-unit id="label.gender.f">
+                <source>label.gender.f</source>
+                <target>Féminin</target>
+            </trans-unit>
+            <trans-unit id="label.gender">
+                <source>label.gender</source>
+                <target>Genre</target>
+            </trans-unit>
+            <trans-unit id="label.upload">
+                <source>label.upload</source>
+                <target>Télécharger un fichier</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
