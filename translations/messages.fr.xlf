@@ -80,6 +80,15 @@
                 <source>message.receive_account_token</source>
                 <target>Le lien que vous avez suivi est corrompu ou n'est plus valide. Votre compte n'étant pas activé, vous pouvez demander à recevoir un nouveau mail d'activiation. </target>
             </trans-unit>
+
+            <trans-unit id="message.upload.complete">
+                <source>message.upload.complete</source>
+                <target>Le téléchargement est terminé</target>
+            </trans-unit>
+            <trans-unit id="message.upload.error">
+                <source>message.upload.error</source>
+                <target>Une erreur s'est produite lors du téléchargement</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

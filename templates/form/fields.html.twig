@@ -11,22 +11,37 @@
 
 {% block upload_widget %}
     {% spaceless %}
-        <div class="upload_context p-5">
-            <div class="upload_area item d-flex flex-column justify-content-center align-items-center">
-                <svg class="svg-icon" viewBox="0 0 20 20">
-                    <path fill="none"
-                          d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"></path>
-                </svg>
+        <div class="card upload_context">
+            <div class="card-header">
+                <div class="item-pill">
+                    <span class="circle circle-green mr-2"> </span>
+                    <span class="circle circle-orange mr-2"> </span>
+                    <span class="circle circle-red"> </span>
+                </div>
+                <div class="item-progress">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body upload_area">
+                {% if form.vars.data.fileGroup.files.0.path is empty %}
+                    <svg class="svg-icon" viewBox="0 0 20 20">
+                        <path fill="none"
+                              d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"></path>
+                    </svg>
+                {% else %}
+                    <img src="{{ form.vars.data.fileGroup.files.0.path }}"/>
+                {% endif %}
                 {{ form_widget(form.file) }}
                 {{ form_label(form.file) }}
+                {{ form_widget(form.name) }}
+                {{ form_widget(form.path) }}
             </div>
-            <div class="card item">
-                <div class="card-header">
-                    Prévisualisation
-                </div>
-                <div class="card-body">
-                    <img src="{{ form.vars.data.fileGroup.files.0.path }}"/>
-                </div>
+            <div class="card-footer">
+                <p class="upload-complete">{{ 'message.upload.complete'|trans }}</p>
+                <p class="upload-error">{{ 'message.upload.error'|trans }}</p>
             </div>
         </div>
     {% endspaceless %}
