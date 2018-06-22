@@ -52,10 +52,10 @@ class ProfileController extends Controller
     /**
      * @Route("/upload")
      */
-    public function upload(Request $request) {
-
+    public function upload(Request $request)
+    {
         $uploadedFile = $request->files->get('image');
-        if(!is_null($uploadedFile)) {
+        if (!is_null($uploadedFile)) {
             $file = new File();
             $file->setFile($uploadedFile);
             $fileName = $this->get(FileManager::class)->upload($file);
@@ -72,6 +72,5 @@ class ProfileController extends Controller
         return $this->json([
             'success' => false,
         ]);
-
     }
 }

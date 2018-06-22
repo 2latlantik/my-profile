@@ -54,7 +54,8 @@ class ProfileType extends AbstractType
                 'label' => 'label.profile_picture',
                 'multiple' => false,
             ])
-            ->addEventListener(FormEvents::PRE_SET_DATA,
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
                 array($this, 'onPReSetData')
             )
             ->addEventListener(
@@ -69,16 +70,15 @@ class ProfileType extends AbstractType
 
         /** @var Profile $data */
         $data = $event->getData();
-        if(empty($data->getProfilePicture())) {
+        if (empty($data->getProfilePicture())) {
             $fileGroup = new FileGroup();
             $data->setProfilePicture($fileGroup);
         }
 
-        if($data->getProfilePicture()->getFiles()->isEmpty()) {
+        if ($data->getProfilePicture()->getFiles()->isEmpty()) {
             $file = new File();
             $data->getProfilePicture()->addFile($file);
         }
-
     }
 
     public function onPostSubmit(FormEvent $event)
@@ -86,16 +86,15 @@ class ProfileType extends AbstractType
 
         /** @var Profile $data */
         $data = $event->getData();
-        foreach($data->getProfilePicture()->getFiles() as $file) {
-            if(empty($file->getFile()) && empty($file->getId())) {
+        foreach ($data->getProfilePicture()->getFiles() as $file) {
+            if (empty($file->getFile()) && empty($file->getId())) {
                 $data->getProfilePicture()->removeFile($file);
             }
         }
 
-        if(0 === count($data->getProfilePicture()->getFiles())) {
+        if (0 === count($data->getProfilePicture()->getFiles())) {
             $data->setProfilePicture(null);
         }
-
     }
 
     /**
