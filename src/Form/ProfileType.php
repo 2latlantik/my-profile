@@ -2,13 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\Profile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use App\Entity\FileGroup;
+use App\Entity\File;
+use App\Entity\Profile;
 
 /**
  * Class ProfileType
@@ -50,7 +54,47 @@ class ProfileType extends AbstractType
                 'label' => 'label.profile_picture',
                 'multiple' => false,
             ])
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                array($this, 'onPReSetData')
+            )
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                array($this, 'onPostSubmit')
+            )
         ;
+    }
+
+    public function onPreSetData(FormEvent $event)
+    {
+
+        /** @var Profile $data */
+        $data = $event->getData();
+        if (empty($data->getProfilePicture())) {
+            $fileGroup = new FileGroup();
+            $data->setProfilePicture($fileGroup);
+        }
+
+        if ($data->getProfilePicture()->getFiles()->isEmpty()) {
+            $file = new File();
+            $data->getProfilePicture()->addFile($file);
+        }
+    }
+
+    public function onPostSubmit(FormEvent $event)
+    {
+
+        /** @var Profile $data */
+        $data = $event->getData();
+        foreach ($data->getProfilePicture()->getFiles() as $file) {
+            if (empty($file->getFile()) && empty($file->getId())) {
+                $data->getProfilePicture()->removeFile($file);
+            }
+        }
+
+        if (0 === count($data->getProfilePicture()->getFiles())) {
+            $data->setProfilePicture(null);
+        }
     }
 
     /**

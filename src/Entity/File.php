@@ -82,7 +82,7 @@ class File
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -100,7 +100,7 @@ class File
     /**
      * @return string
      */
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }

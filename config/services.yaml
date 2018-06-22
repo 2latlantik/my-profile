@@ -54,6 +54,7 @@ services:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType}
 
     App\Service\FileManager:
+        public: true
         arguments:
             $targetDirectory: '%files_directory%'
 

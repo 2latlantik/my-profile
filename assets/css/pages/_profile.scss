@@ -2,22 +2,58 @@
 .upload_context {
   font-size: 1.2rem;
   background-color: #c8dadf;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  .item {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
-  }
-
+  width: 40rem;
   img {
     max-width: 100%;
     max-height: 100%;
   }
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    .item-pill {
+      flex-grow : 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      align-self: center;
+      text-align: center;
+      .circle {
+        display: inline-block;
+        background: black;
+        width: 1.8rem;
+        height: 1.8rem;
+        border-radius: 50%;
+        &:hover {
+          filter: brightness(175%);
+        }
+      }
+      .circle-green {
+        background: radial-gradient(circle at 0.3rem 0.3rem, #2ecc40, #000);
+      }
+      .circle-orange {
+        background: radial-gradient(circle at 0.3rem 0.3rem, #ff851b, #000);
+      }
+      .circle-red {
+        background: radial-gradient(circle at 0.3rem 0.3rem, #ff4136, #000);
+      }
+      .circle-lighter {
+        filter: brightness(175%);
+      }
+    }
+    .item-progress {
+      flex-grow : 3;
+      flex-shrink: 3;
+      flex-basis: 0;
+      align-self: center;
+      height: 1.8rem;
+      .progress {
+        height: 1.8rem;
+      }
+    }
+  }
 }
 
 .upload_area {
+  text-align: center;
   &.is-dragover
   {
     outline-offset: -20px;
@@ -45,6 +81,11 @@
       color: #39bfd3;
     }
   }
+}
+
+.upload-complete,
+.upload-error {
+  display: none;
 }
 
 .svg-icon {
