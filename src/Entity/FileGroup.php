@@ -44,7 +44,7 @@ class FileGroup
      * @param File $file
      * @return FileGroup
      */
-    public function addFiles(File $file): self
+    public function addFile(File $file): self
     {
         $this->files[] = $file;
         $file->setFileGroup($this);

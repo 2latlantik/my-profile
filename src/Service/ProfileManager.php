@@ -53,10 +53,10 @@ class ProfileManager
     {
         $profile = new Profile();
         $profile->setUser($this->user);
-        $fileGroup = new FileGroup();
+        /*$fileGroup = new FileGroup();
         $file = new File();
         $fileGroup->addFiles($file);
-        $profile->setProfilePicture($fileGroup);
+        $profile->setProfilePicture($fileGroup);*/
         return $profile;
     }
 }

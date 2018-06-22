@@ -175,7 +175,7 @@ class Profile
      * @param FileGroup $profilePicture
      * @return Profile
      */
-    public function setProfilePicture(FileGroup $profilePicture): self
+    public function setProfilePicture(FileGroup $profilePicture = null): self
     {
         $this->profilePicture = $profilePicture;
         return $this;

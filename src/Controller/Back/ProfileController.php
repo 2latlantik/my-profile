@@ -5,9 +5,12 @@ use App\Form\ProfileType;
 use App\Service\ProfileManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileManager;
+use App\Entity\File;
 
 /**
  * Class ProfileController
@@ -33,13 +36,42 @@ class ProfileController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($profile);
+
             $em->flush();
 
             $this->addFlash('success', 'success.profile.updated');
+
+            return $this->redirectToRoute('back_profile');
         }
 
         return $this->render('back/profile.html.twig', [
             'form'  => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/upload")
+     */
+    public function upload(Request $request) {
+
+        $uploadedFile = $request->files->get('image');
+        if(!is_null($uploadedFile)) {
+            $file = new File();
+            $file->setFile($uploadedFile);
+            $fileName = $this->get(FileManager::class)->upload($file);
+
+            $file->setName($fileName);
+            $file->setPath('uploads' . DIRECTORY_SEPARATOR . $fileName);
+            return $this->json([
+                'success' => true,
+                'name' => $file->getName(),
+                'path' => $file->getPath(),
+            ]);
+        }
+
+        return $this->json([
+            'success' => false,
+        ]);
+
     }
 }
