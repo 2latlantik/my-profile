@@ -87,7 +87,7 @@ class ProfileType extends AbstractType
         /** @var Profile $data */
         $data = $event->getData();
         foreach ($data->getProfilePicture()->getFiles() as $file) {
-            if (empty($file->getFile()) && empty($file->getId())) {
+            if (empty($file->getFile()) && empty($file->getName())) {
                 $data->getProfilePicture()->removeFile($file);
             }
         }

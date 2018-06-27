@@ -77,8 +77,14 @@
   &+ label {
     cursor: pointer;
     font-weight: bold;
+    top: initial;
     &:hover {
       color: #39bfd3;
+    }
+    &:after {
+      content: '';
+      background-color: transparent;
+      border: none;
     }
   }
 }
