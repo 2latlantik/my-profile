@@ -36,7 +36,6 @@ class ProfileController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($profile);
-
             $em->flush();
 
             $this->addFlash('success', 'success.profile.updated');
