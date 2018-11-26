@@ -1,8 +1,11 @@
+$radius-circle: 1.2rem;
+$height-progress: $radius-circle;
+$width-upload-context: 25rem;
 
 .upload_context {
   font-size: 1.2rem;
   background-color: #c8dadf;
-  width: 40rem;
+  width: $width-upload-context;
   img {
     max-width: 100%;
     max-height: 100%;
@@ -11,16 +14,16 @@
     display: flex;
     flex-direction: row;
     .item-pill {
-      flex-grow : 1;
-      flex-shrink: 1;
+      flex-grow : 2;
+      flex-shrink: 2;
       flex-basis: 0;
       align-self: center;
       text-align: center;
       .circle {
         display: inline-block;
         background: black;
-        width: 1.8rem;
-        height: 1.8rem;
+        width: $radius-circle;
+        height: $radius-circle;
         border-radius: 50%;
         &:hover {
           filter: brightness(175%);
@@ -40,13 +43,13 @@
       }
     }
     .item-progress {
-      flex-grow : 3;
-      flex-shrink: 3;
+      flex-grow : 5;
+      flex-shrink: 5;
       flex-basis: 0;
       align-self: center;
-      height: 1.8rem;
+      height: $height-progress;
       .progress {
-        height: 1.8rem;
+        height: $height-progress;
       }
     }
   }
@@ -108,4 +111,71 @@
 .svg-icon circle {
   stroke: #4691f6;
   stroke-width: 1;
+}
+
+/*
+  Main content
+*/
+.profile--title {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile--main {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #DDDDDD;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2),
+  -2px -2px 10px rgba(0,0,0,0.2);
+  & > div {
+    padding: 0 1rem;
+  }
+
+  .profile--main--picture {
+    border-right: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 0px 10px rgba(0,0,0,0.2),
+      inset -2px 0px 10px rgba(0,0,0,0.2);
+  }
+  .profile--main--data {
+    flex-grow: 1;
+    /*border: 1px solid green;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & > div {
+      width: 100%;
+    }
+  }
+}
+
+/*
+  School Path
+ */
+.collection--root {
+  border: 1px solid #DDDDDD;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2),
+  -2px -2px 10px rgba(0, 0, 0, 0.2);
+
+  .profile--items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &:empty {
+      border: none;
+    }
+    .profile--item {
+      flex: 0 0 33.33%;
+      padding: 0.5rem;
+    }
+
+  }
+  .collection--add {
+   /* border-top: 1px solid rgba(0, 0, 0, 0.3);*/
+    /*box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2),
+    inset 0px 2px 10px rgba(0, 0, 0, 0.2);*/
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+  }
 }

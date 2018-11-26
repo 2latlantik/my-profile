@@ -54,6 +54,62 @@
                 <source>label.upload</source>
                 <target>Télécharger un fichier</target>
             </trans-unit>
+            <trans-unit id="label.school_paths">
+                <source>label.school_paths</source>
+                <target>Scolarité</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.title">
+                <source>label.school_path.title</source>
+                <target>Titre obtenu ou diplôme</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.school">
+                <source>label.school_path.school</source>
+                <target>Ecole</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.degree_level">
+                <source>label.school_path.degree_level</source>
+                <target>Niveau d'études</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.description">
+                <source>label.school_path.description</source>
+                <target>Détails</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.start">
+                <source>label.school_path.start</source>
+                <target>Début</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.end">
+                <source>label.school_path.end</source>
+                <target>Fin</target>
+            </trans-unit>
+            <trans-unit id="label.professional_experiences">
+                <source>label.professional_experiences</source>
+                <target>Expériences professionnelle</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.title">
+                <source>label.professionnal_experience.title</source>
+                <target>Poste occupé</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.society">
+                <source>label.professionnal_experience.society</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.location">
+                <source>label.professionnal_experience.location</source>
+                <target>Lieu d'activité</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.description">
+                <source>label.professionnal_experience.description</source>
+                <target>Détails</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.start">
+                <source>label.professionnal_experience.start</source>
+                <target>Début</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.end">
+                <source>label.professionnal_experience.end</source>
+                <target>Fin</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
