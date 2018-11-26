@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
 
@@ -59,6 +60,25 @@ class Profile
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $gender;
+
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\SchoolPath", mappedBy="profile", cascade={"persist"})
+    */
+    private $schoolPaths;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfessionalExperience", mappedBy="profile", cascade={"persist"})
+     */
+    private $professionnalExperiences;
+
+    /**
+     * Profile constructor.
+     */
+    public function __construct()
+    {
+        $this->schoolPaths = new ArrayCollection();
+        $this->professionnalExperiences = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -179,5 +199,59 @@ class Profile
     {
         $this->profilePicture = $profilePicture;
         return $this;
+    }
+
+    /**
+     * @param SchoolPath $schoolPath
+     * @return Profile
+     */
+    public function addSchoolPath(SchoolPath $schoolPath): self
+    {
+        $this->schoolPaths[] = $schoolPath;
+        $schoolPath->setProfile($this);
+        return $this;
+    }
+
+    /**
+     * @param SchoolPath $schoolPAth
+     */
+    public function removeSchoolPath(SchoolPath $schoolPath): void
+    {
+        $this->schoolPaths->removeElement($schoolPath);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSchoolPaths()
+    {
+        return $this->schoolPaths;
+    }
+
+    /**
+     * @param ProfessionalExperience $professionnalExperience
+     * @return Profile
+     */
+    public function addProfessionnalExperience(ProfessionalExperience $professionnalExperience): self
+    {
+        $this->professionnalExperiences[] = $professionnalExperience;
+        $professionnalExperience->setProfile($this);
+        return $this;
+    }
+
+    /**
+     * @param ProfessionalExperience $professionnalExperience
+     */
+    public function removeProfessionnalExperience(SchoolPath $professionnalExperience): void
+    {
+        $this->professionnalExperiences->removeElement($professionnalExperience);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfessionnalExperiences()
+    {
+        return $this->professionnalExperiences;
     }
 }
