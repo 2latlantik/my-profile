@@ -46,3 +46,59 @@
         </div>
     {% endspaceless %}
 {% endblock %}
+
+{% block collection__title %}
+    <h2 class="profile--title">{{ label|trans({}, 'form') }}</h2>
+{% endblock %}
+
+{% block collection__widget %}
+    <div class="collection collection--root" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}" {% if form.vars.allow_add is defined %}data-adding="{{ form.vars.allow_add }}"{% endif %}>
+        <div class="collection--content profile--items">
+            {% for subForm in form %}
+                {{ form_widget(subForm) }}
+            {% endfor %}
+        </div>
+        <div class="collection--add"></div>
+    </div>
+{% endblock %}
+
+{% block collection__entry__widget %}
+    <div class="collection--item profile--item">
+        <div class="card">
+            <div class="card-header">
+                {{ item_title|trans }} n°<span class="item--number"></span>
+                <span class="collection--delete pull-right"></span>
+            </div>
+            <div class="card-body">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _profile_schoolPaths_label %}
+    {{ block('collection__title') }}
+{% endblock %}
+
+{% block _profile_schoolPaths_widget %}
+    {{ block('collection__widget') }}
+{% endblock %}
+
+{% block _profile_schoolPaths_entry_widget %}
+    {% set item_title = 'label.school_path.degree' %}
+    {{ block('collection__entry__widget') }}
+{% endblock %}
+
+{% block _profile_professionnalExperiences_label %}
+    {{ block('collection__title') }}
+{% endblock %}
+
+{% block _profile_professionnalExperiences_widget %}
+    {{ block('collection__widget') }}
+{% endblock %}
+
+{% block _profile_professionnalExperiences_entry_widget %}
+    {% set item_title = 'label.professionnal_experience.title' %}
+    {{ block('collection__entry__widget') }}
+{% endblock %}
+

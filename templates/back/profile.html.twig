@@ -11,17 +11,41 @@
                 </div>
                 <div class="card-body">
                     {{ form_start(form) }}
-                    {{ form_row(form.surname) }}
-                    {{ form_row(form.name) }}
-                    {{ form_row(form.birthDate) }}
-                    {{ form_row(form.gender) }}
-                    {{ form_row(form.profilePicture) }}
+
+                    {% include 'form/profile/_main.html.twig'
+                        with {
+                            'surname': form.surname,
+                            'name': form.name,
+                            'birthDate': form.birthDate,
+                            'gender': form.gender,
+                            'profilePicture': form.profilePicture
+                        }
+                        only
+                    %}
+                    {% include 'form/profile/_school_path.html.twig'
+                        with {
+                            'schoolPaths': form.schoolPaths
+                        }
+                        only
+                    %}
+                    {% include 'form/profile/_professionnal_experience.html.twig'
+                        with {
+                            'professionnalExperiences': form.professionnalExperiences
+                        }
+                        only
+                    %}
+
                     <button type="submit" class="btn btn-primary">{{ "action.profile.do"|trans() }}</button>
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/profile.js') }}"></script>
 {% endblock %}
 
 {% set name = 'back' %}

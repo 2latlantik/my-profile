@@ -70,10 +70,22 @@
                 <source>title.profile</source>
                 <target>Définissez votre profil</target>
             </trans-unit>
+            <trans-unit id="title.profile.identity">
+                <source>title.profile.identity</source>
+                <target>Identité</target>
+            </trans-unit>
 
             <trans-unit id="label.homepage.goal_site">
                 <source>label.homepage.goal_site</source>
                 <target>Créez un profil professionnel à votre image</target>
+            </trans-unit>
+            <trans-unit id="label.school_path.degree">
+                <source>label.school_path.degree</source>
+                <target>Diplôme</target>
+            </trans-unit>
+            <trans-unit id="label.professionnal_experience.title">
+                <source>label.professionnal_experience.title</source>
+                <target>Poste occupé</target>
             </trans-unit>
 
             <trans-unit id="message.receive_account_token">

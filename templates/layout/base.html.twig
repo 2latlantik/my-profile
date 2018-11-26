@@ -10,7 +10,9 @@
     </head>
     <body {% block classbody %}{% endblock %}>
         {% block body %}{% endblock %}
-        {% block javascripts %} <script src="{{ asset('build/app.js') }}"></script>{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('build/app.js') }}"></script>
+        {% endblock %}
         {#<script src="{{ asset('modif.js') }}"></script>
         <script src="{{ asset('test.js') }}"></script>#}
 
