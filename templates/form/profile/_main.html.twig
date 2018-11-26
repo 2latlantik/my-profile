@@ -1,0 +1,19 @@
+{% include 'form/profile/_title.html.twig'
+    with {
+    'title': 'title.profile.identity'
+}
+    only
+%}
+<div class="profile--main">
+    <div class="profile--main--picture" >
+        {{ form_row(profilePicture) }}
+    </div>
+    <div class="profile--main--data">
+        <div>
+            {{ form_row(surname) }}
+            {{ form_row(name) }}
+            {{ form_row(birthDate) }}
+            {{ form_row(gender) }}
+        </div>
+    </div>
+</div>

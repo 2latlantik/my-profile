@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,10 +29,12 @@ class ProfileType extends AbstractType
     {
         $builder
             ->add('surname', TextType::class, [
-                'label' => 'label.surname'
+                'label' => 'label.surname',
+                'ico' => 'user',
             ])
             ->add('name', TextType::class, [
-                'label' => 'label.name'
+                'label' => 'label.name',
+                'ico' => 'user',
             ])
             ->add('birthDate', DateType::class, [
                 'label' => 'label.birth_date',
@@ -40,7 +43,8 @@ class ProfileType extends AbstractType
                 'html5' => false,
                 'attr' => [
                     'class' =>  'js-datepicker'
-                ]
+                ],
+                'ico' => 'birthday-cake'
             ])
             ->add('gender', ChoiceType::class, [
                 'label' => 'label.gender',
@@ -48,15 +52,30 @@ class ProfileType extends AbstractType
                     'label.gender.m' => 'm',
                     'label.gender.f' => 'f'
                 ],
-                'required' => false
+                'required' => false,
+                'ico' => 'venus-mars'
             ])
             ->add('profilePicture', FileGroupType::class, [
                 'label' => 'label.profile_picture',
                 'multiple' => false,
             ])
+            ->add('schoolPaths', CollectionType::class, [
+                'entry_type' => SchoolPathType::class,
+                'label' => 'label.school_paths',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
+            ->add('professionnalExperiences', CollectionType::class, [
+                'entry_type' => ProfessionnalExperienceType::class,
+                'label' => 'label.professional_experiences',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
-                array($this, 'onPReSetData')
+                array($this, 'onPreSetData')
             )
             ->addEventListener(
                 FormEvents::POST_SUBMIT,

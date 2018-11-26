@@ -10,6 +10,9 @@ import UploadBlock from './Object/UploadBlock';
 //var FileSend = require('./Object/FileSend');
 //var UploadBlock = require('./Object/UploadBlock');
 
+import Collection from './Object/Collection';
+global.Collection = Collection;
+
 $(document).ready(function() {
     $('.js-datepicker').datepicker({
             format: "dd/mm/yyyy",
@@ -19,12 +22,11 @@ $(document).ready(function() {
 
     if(UploadBlock.isAdvancedUpload() === true) {
         let elements = document.getElementsByClassName('upload_area');
-
         Array.from(elements).forEach(function(child) {
             new UploadBlock(child);
-
         });
     }
+
 
 });
 
