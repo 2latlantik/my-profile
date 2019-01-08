@@ -1,0 +1,65 @@
+
+.tags--area {
+  border: 1px solid #DDDDDD;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2),
+  -2px -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tags--inputs {
+  border: 1px solid #ccc;
+  padding: 1rem 0.5rem;
+  height: 5rem;
+  overflow-y: auto;
+  display: flex;
+
+  .tags--inp {
+    flex-grow: 1;
+  }
+}
+
+.tags--inputs span.tag {
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0.2rem 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  background-color: #162955;
+  color: #fff;
+  background-image: linear-gradient(to bottom, #8191ff 0%, #4e65ff 100%);
+  background-repeat: repeat-x;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tags--inputs span.tag a {
+  background-color: #8191ff;
+  color: #fff;
+  position: absolute;
+  display: inline-block;
+  border: 1px solid white;
+  top: -0.3rem;
+  right: -0.5rem;
+  line-height:1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.tags--inputs div {
+  display: block;
+  float: left;
+}
+
+div.tags--inputs input {
+  padding: 0.1rem;
+  border: 1px solid transparent;
+  background-image: linear-gradient(to right, #ddd 0%, #fff 100%);
+  width: 100%;
+  border-right: none;
+  outline: 0;
+}

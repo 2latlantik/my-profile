@@ -25,6 +25,7 @@
         "symfony/translation": "^4.0",
         "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
+        "symfony/webpack-encore-bundle": "^1.0",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0"
     },
@@ -32,6 +33,7 @@
         "2latlantik/symfony-my-cs": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "symfony/dotenv": "^4.0",
+        "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "^1.0",
         "symfony/var-dumper": "^4.0"
     },
