@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Profile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,5 +21,18 @@ class ProfileRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Profile::class);
+    }
+
+    public function findByUser($user): Query
+    {
+        $query = $this->createQueryBuilder('p')
+            ->leftJoin('p.schoolPaths', 'sp')
+            ->leftJoin('p.professionnalExperiences', 'pe')
+            ->leftJoin('p.tags', 't')
+            ->select('p, sp, pe, t')
+            ->where('p.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery();
+        return $query;
     }
 }

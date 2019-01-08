@@ -72,12 +72,20 @@ class Profile
     private $professionnalExperiences;
 
     /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
+     */
+    private $tags;
+
+    /**
      * Profile constructor.
      */
     public function __construct()
     {
         $this->schoolPaths = new ArrayCollection();
         $this->professionnalExperiences = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -242,7 +250,7 @@ class Profile
     /**
      * @param ProfessionalExperience $professionnalExperience
      */
-    public function removeProfessionnalExperience(SchoolPath $professionnalExperience): void
+    public function removeProfessionnalExperience(ProfessionalExperience $professionnalExperience): void
     {
         $this->professionnalExperiences->removeElement($professionnalExperience);
     }
@@ -253,5 +261,31 @@ class Profile
     public function getProfessionnalExperiences()
     {
         return $this->professionnalExperiences;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return self
+     */
+    public function addTag(Tag $tag): self
+    {
+        $this->tags[] = $tag;
+        return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\Type\TagsType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -72,6 +73,9 @@ class ProfileType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+            ])
+            ->add('tags', TagsType::class, [
+                'label' => 'label.skills.title'
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
