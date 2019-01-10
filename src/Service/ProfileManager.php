@@ -38,7 +38,7 @@ class ProfileManager
      */
     public function getProfile() :Profile
     {
-        $profile = $this->em->getRepository(Profile::class)->findBy(array('user' => $this->user->getId()));
+        $profile = $this->em->getRepository(Profile::class)->findByUser($this->user)->getResult();
         if (empty($profile)) {
             return $this->createProfile();
         } else {

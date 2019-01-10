@@ -17,4 +17,15 @@ $(document).ready(function() {
         c.display();
     });
 
+
+    let tagsArea = document.getElementsByClassName('tags--area');
+    Array.from(tagsArea).forEach(function(child) {
+        new TagsArea(child);
+    });
+
+    let tagsInput = document.getElementsByClassName('tags--input');
+    Array.from(tagsInput).forEach(function(child) {
+        child.classList.remove('form-control');
+    });
+
 });

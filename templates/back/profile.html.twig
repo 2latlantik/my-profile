@@ -34,7 +34,12 @@
                         }
                         only
                     %}
-
+                    {% include 'form/profile/_skill.html.twig'
+                        with {
+                        'tags': form.tags
+                    }
+                        only
+                    %}
                     <button type="submit" class="btn btn-primary">{{ "action.profile.do"|trans() }}</button>
                     {{ form_end(form) }}
                 </div>
