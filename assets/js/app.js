@@ -12,6 +12,8 @@ import UploadBlock from './Object/UploadBlock';
 
 import Collection from './Object/Collection';
 global.Collection = Collection;
+import TagsArea from './Object/TagsArea';
+global.TagsArea = TagsArea;
 
 $(document).ready(function() {
     $('.js-datepicker').datepicker({

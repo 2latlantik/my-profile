@@ -110,6 +110,10 @@
                 <source>label.professionnal_experience.end</source>
                 <target>Fin</target>
             </trans-unit>
+            <trans-unit id="label.skills.title">
+                <source>label.skills.title</source>
+                <target>Compétences</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -102,3 +102,19 @@
     {{ block('collection__entry__widget') }}
 {% endblock %}
 
+{% block tags_label %}
+    <h2 class="profile--title">{{ label|trans({}, 'form') }}</h2>
+{% endblock %}
+
+{% block tags_widget %}
+    <div class="tags--area">
+        {{ form_widget(form.data) }}
+        <div class="tags--inputs">
+            <div class="tags--list">
+            </div>
+            <div class="tags--inp">
+                {{ form_widget(form.front) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
