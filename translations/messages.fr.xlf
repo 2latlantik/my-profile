@@ -87,6 +87,10 @@
                 <source>label.professionnal_experience.title</source>
                 <target>Poste occupé</target>
             </trans-unit>
+            <trans-unit id="label.skill">
+                <source>label.skill</source>
+                <target>Compétence</target>
+            </trans-unit>
 
             <trans-unit id="message.receive_account_token">
                 <source>message.receive_account_token</source>

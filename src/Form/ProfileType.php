@@ -74,8 +74,15 @@ class ProfileType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ])
+            ->add('skillGroups', CollectionType::class, [
+                'entry_type' => SkillGroupType::class,
+                'label' => 'label.skill_groups',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
             ->add('tags', TagsType::class, [
-                'label' => 'label.skills.title'
+                'label' => 'label.strong_point.title'
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,

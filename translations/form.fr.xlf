@@ -82,6 +82,22 @@
                 <source>label.school_path.end</source>
                 <target>Fin</target>
             </trans-unit>
+            <trans-unit id="label.skill_groups">
+                <source>label.skill_groups</source>
+                <target>Familles de compétences</target>
+            </trans-unit>
+            <trans-unit id="label.skill_group.label">
+                <source>label.skill_group.label</source>
+                <target>Famille</target>
+            </trans-unit>
+            <trans-unit id="label.skill.label">
+                <source>label.skill.label</source>
+                <target>Intitulé</target>
+            </trans-unit>
+            <trans-unit id="label.skill.progression">
+                <source>label.skill.progression</source>
+                <target>Progression</target>
+            </trans-unit>
             <trans-unit id="label.professional_experiences">
                 <source>label.professional_experiences</source>
                 <target>Expériences professionnelle</target>
@@ -110,9 +126,9 @@
                 <source>label.professionnal_experience.end</source>
                 <target>Fin</target>
             </trans-unit>
-            <trans-unit id="label.skills.title">
-                <source>label.skills.title</source>
-                <target>Compétences</target>
+            <trans-unit id="label.strong_point.title">
+                <source>label.strong_point.title</source>
+                <target>Points forts</target>
             </trans-unit>
         </body>
     </file>

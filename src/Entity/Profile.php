@@ -72,6 +72,11 @@ class Profile
     private $professionnalExperiences;
 
     /**
+     *  @ORM\OneToMany(targetEntity="App\Entity\SkillGroup", mappedBy="profile", cascade={"persist"})
+     */
+    private $skillGroups;
+
+    /**
      * @var array
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
@@ -85,6 +90,7 @@ class Profile
     {
         $this->schoolPaths = new ArrayCollection();
         $this->professionnalExperiences = new ArrayCollection();
+        $this->skillGroups = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
@@ -261,6 +267,33 @@ class Profile
     public function getProfessionnalExperiences()
     {
         return $this->professionnalExperiences;
+    }
+
+    /**
+    * @param SkillGroup $skillGroup
+    * @return Profile
+    */
+    public function addSkillGroup(SkillGroup $skillGroup): self
+    {
+        $this->skillGroups[] = $skillGroup;
+        $skillGroup->setProfile($this);
+        return $this;
+    }
+
+    /**
+     * @param SkillGroup $skillGroup
+     */
+    public function removeSkillGroup(SkillGroup $skillGroup): void
+    {
+        $this->skillGroups->removeElement($skillGroup);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkillGroups()
+    {
+        return $this->skillGroups;
     }
 
     /**

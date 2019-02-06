@@ -180,3 +180,48 @@ $width-upload-context: 25rem;
   }
 }
 
+/*
+  Skills
+ */
+.collection--skillGroups {
+  padding: 2rem 0;
+  .collection--add--skillGroups {
+    text-align: center;
+  }
+}
+
+.skill--groups--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  div:nth-child(1) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+  div:nth-child(2) {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+}
+
+.skill--groups--item {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.skill--item {
+  .card-body {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    div {
+      padding: 0 3rem;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+    }
+
+  }
+}
