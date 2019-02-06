@@ -22,6 +22,12 @@
                         }
                         only
                     %}
+                    {% include 'form/profile/_strong_point.html.twig'
+                        with {
+                        'tags': form.tags
+                    }
+                        only
+                    %}
                     {% include 'form/profile/_school_path.html.twig'
                         with {
                             'schoolPaths': form.schoolPaths
@@ -34,9 +40,9 @@
                         }
                         only
                     %}
-                    {% include 'form/profile/_skill.html.twig'
+                    {% include 'form/profile/_skill_group.html.twig'
                         with {
-                        'tags': form.tags
+                        'skillGroups': form.skillGroups
                     }
                         only
                     %}

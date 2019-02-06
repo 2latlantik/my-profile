@@ -76,6 +76,62 @@
     </div>
 {% endblock %}
 
+{% block skillGroups__collection__widget %}
+    <div class="collection--skillGroups collection--root" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}" {% if form.vars.allow_add is defined %}data-adding="{{ form.vars.allow_add }}"{% endif %}>
+        <div class="collection--content--skillGroups profile--items">
+            {% for subForm in form %}
+                {{ form_widget(subForm) }}
+            {% endfor %}
+        </div>
+        <div class="collection--add--skillGroups"></div>
+    </div>
+{% endblock %}
+
+{% block skillGroups__collection__entry_widget %}
+    <div class="collection--item skill--groups--item">
+        <div class="card">
+            <div class="card-header skill--groups--header">
+                <div>
+                    {{ form_widget(form.label) }}
+                </div>
+                <div>
+                    <span class="collection--delete--skillGroups pull-right"></span>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_widget(form.skills) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block skills__collection__widget %}
+    <div class="collection--skills collection--root" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}" {% if form.vars.allow_add is defined %}data-adding="{{ form.vars.allow_add }}"{% endif %} data-prototype_name="__skillcollection__">
+        <div class="collection--content">
+            {% for subForm in form %}
+                {{ form_widget(subForm) }}
+            {% endfor %}
+        </div>
+        <div class="collection--add"></div>
+    </div>
+{% endblock %}
+
+{% block skills__collection__entry__widget %}
+    <div class="skill--item">
+        <div class="card">
+            <div class="card-header">
+                {{ item_title|trans }}
+                <span class="collection--delete pull-right"></span>
+            </div>
+            <div class="card-body">
+                <div>{{ form_widget(form.label) }}</div>
+                <div>{{ form_widget(form.progression) }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block _profile_schoolPaths_label %}
     {{ block('collection__title') }}
 {% endblock %}
@@ -104,6 +160,27 @@
 
 {% block tags_label %}
     <h2 class="profile--title">{{ label|trans({}, 'form') }}</h2>
+{% endblock %}
+
+{% block _profile_skillGroups_label %}
+    {{ block('collection__title') }}
+{% endblock %}
+
+{% block _profile_skillGroups_widget %}
+    {{ block('skillGroups__collection__widget') }}
+{% endblock %}
+
+{% block _profile_skillGroups_entry_widget %}
+    {{ block('skillGroups__collection__entry_widget') }}
+{% endblock %}
+
+{% block _profile_skillGroups_entry_skills_widget %}
+    {{ block('skills__collection__widget') }}
+{% endblock %}
+
+{% block _profile_skillGroups_entry_skills_entry_widget %}
+    {% set item_title = 'label.skill' %}
+    {{ block('skills__collection__entry__widget') }}
 {% endblock %}
 
 {% block tags_widget %}
