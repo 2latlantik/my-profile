@@ -5,7 +5,6 @@ use App\Form\ProfileType;
 use App\Service\ProfileManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +22,7 @@ class ProfileController extends AbstractController
      * @Route(
      *     "/profile",
      *     name="back_profile",
-     *     methods={"GET", "POSET"}
+     *     methods={"GET", "POST"}
      * )
      * @Security("is_granted('ROLE_USER')")
      * @param Request $request
