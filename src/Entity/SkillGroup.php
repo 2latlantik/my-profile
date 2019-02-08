@@ -29,7 +29,7 @@ class SkillGroup
     private $label;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="professionnalExperiences")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="skillGroups")
      */
     private $profile;
 

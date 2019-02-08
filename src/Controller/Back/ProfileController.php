@@ -4,7 +4,7 @@ namespace App\Controller\Back;
 use App\Form\ProfileType;
 use App\Service\ProfileManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +16,16 @@ use App\Entity\File;
  * Class ProfileController
  * @package App\Controller\Back
  */
-class ProfileController extends Controller
+class ProfileController extends AbstractController
 {
 
     /**
-     * @Route("/profile", name="back_profile")
-     * @Security("has_role('ROLE_USER')")
+     * @Route(
+     *     "/profile",
+     *     name="back_profile",
+     *     methods={"GET", "POSET"}
+     * )
+     * @Security("is_granted('ROLE_USER')")
      * @param Request $request
      * @param ProfileManager $profileManager
      * @return \Symfony\Component\HttpFoundation\Response
@@ -50,6 +54,8 @@ class ProfileController extends Controller
 
     /**
      * @Route("/upload")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function upload(Request $request)
     {

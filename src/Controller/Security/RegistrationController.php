@@ -3,10 +3,9 @@ namespace App\Controller\Security;
 
 use App\Annotation\TokenableManager;
 use App\Entity\User;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\UserRegisterToken;
 
-class RegistrationController extends Controller
+class RegistrationController extends AbstractController
 {
 
     /**
@@ -23,7 +22,6 @@ class RegistrationController extends Controller
      *     "/register",
      *     name="security_registration_register"
      * )
-     * @Method({"GET", "POST"})
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param EventDispatcherInterface $dispatcher
@@ -67,7 +65,6 @@ class RegistrationController extends Controller
      *     "/user-activate/{key}",
      *     name="security_registration_activation"
      * )
-     * @Method({"GET"})
      * @ParamConverter("token", options={"mapping": {"key": "token"}})
      * @param UserRegisterToken $token
      * @param TokenableManager $tokenManager
@@ -109,7 +106,6 @@ class RegistrationController extends Controller
      *      "/user-activate/new/{key}",
      *      name="security_registration_token"
      * )
-     * @Method({"GET"})
      * @ParamConverter("token", options={"mapping": {"key": "token"}})
      * @param UserRegisterToken $token
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

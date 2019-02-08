@@ -9,13 +9,11 @@ class FormTypeExtension extends AbstractTypeExtension
 {
 
     /**
-     * Returns the name of the type being extended.
-     *
-     * @return string The name of the type being extended
+     * @return iterable
      */
-    public function getExtendedType()
+    public static function getExtendedTypes(): iterable
     {
-        return FormType::class;
+        return [FormType::class];
     }
 
     /**

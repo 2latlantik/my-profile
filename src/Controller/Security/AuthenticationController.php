@@ -1,10 +1,9 @@
 <?php
 namespace App\Controller\Security;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -19,7 +18,7 @@ use App\Annotation\TokenableManager;
 use App\Entity\PasswordToken;
 use App\Entity\User;
 
-class AuthenticationController extends Controller
+class AuthenticationController extends AbstractController
 {
 
     /**
@@ -27,7 +26,6 @@ class AuthenticationController extends Controller
      *      "/password-lost",
      *      name="security_authentication_password_request"
      * )
-     * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -78,7 +76,8 @@ class AuthenticationController extends Controller
     /**
      * @Route(
      *      "/user-password-new/{key}",
-     *      name="security_authentication_password_define")
+     *      name="security_authentication_password_define"
+     * )
      * @ParamConverter(
      *      "token",
      *      options={
@@ -87,7 +86,6 @@ class AuthenticationController extends Controller
      *          }
      *      }
      * )
-     * @Method({"GET", "POST"})
      * @param PasswordToken $token
      * @param Request $request
      * @param TokenableManager $tokenManager
