@@ -61,5 +61,3 @@ services:
     App\EventListener\FileListener:
         tags:
             - { name: doctrine.event_listener, event: preFlush }
-
-    Symfony\Component\HttpKernel\Profiler\Profiler: '@profiler'
