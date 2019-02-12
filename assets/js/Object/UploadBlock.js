@@ -11,13 +11,14 @@ class UploadBlock {
         this.setInputs();
         this.setImages();
         this.hideAllMessages();
+        this.setInputFile();
         upload_area.addEventListener('dragover', (e) => { this.dragover(e) });
         upload_area.addEventListener('dragleave', (e) => { this.dragleave(e) });
         upload_area.addEventListener('drop', (e) => { this.drop(e) });
     }
 
     static isAdvancedUpload() {
-        var div = document.createElement('div');
+        let div = document.createElement('div');
         return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
     }
 
@@ -43,12 +44,33 @@ class UploadBlock {
         });
     }
 
+    updateInputFile(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let files = this.input_upload.files;
+        Array.from(files).forEach((file) => {
+            let send = new FileSend(this, file);
+            send.send();
+        });
+    }
+
     setProgressBar() {
         let progressBar = this.upload_context.getElementsByClassName('progress-bar');
         if(progressBar.item(0) != null) {
             this.progressBar = progressBar.item(0);
         } else {
             this.progressBar = null;
+        }
+    }
+
+    setProgressBarValue(percent, reset) {
+        if(reset === true) {
+            this.progressBar.classList.add("no_transition");
+        }
+        this.progressBar.value = Math.round(percent);
+        this.progressBar.style.width = percent + "%";
+        if(reset === true) {
+            this.progressBar.classList.remove("no_transition");
         }
     }
 
@@ -118,6 +140,16 @@ class UploadBlock {
         }
     }
 
+    setInputFile() {
+        let input = this.upload_area.getElementsByClassName('upload_file');
+        if (input.item(0) != null) {
+            this.input_upload = input.item(0);
+            this.input_upload.addEventListener('change', (e) => { this.updateInputFile(e) });
+        } else {
+            this.input_upload = null;
+        }
+    }
+
     circleGreenOn() {
         this.switchOn(this.buttonGreen);
     }
@@ -158,25 +190,31 @@ class UploadBlock {
     }
 
     showMessageComplete() {
-        this.showMessage(this.uploadComplete);
+        this.showMessage(this.uploadComplete, 'Téléchargement terminé');
     }
 
-    showMessageError() {
-        this.showMessage(this.uploadError);
+    clearMessageError() {
+        this.showMessage(this.uploadError, null);
     }
 
-    showMessage(message) {
-        if(message != null) {
-            message.style.display = 'block';
+    showMessageError(message) {
+        this.showMessage(this.uploadError, message);
+    }
+
+    showMessage(area, message) {
+        if(message !== null) {
+            area.innerHTML = message;
+            area.style.display = 'block';
+        } else {
+            area.innerHTML = '';
+            area.style.display = 'none';
         }
     }
 
     setImage(name, path) {
-
         if(this.imgElement != null) {
             this.imgElement.src = path;
         }
-
         if(this.svgElement != null) {
             let imgElement = new Image();
             imgElement.src = path;

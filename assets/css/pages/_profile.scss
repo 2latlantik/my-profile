@@ -2,6 +2,14 @@ $radius-circle: 1.2rem;
 $height-progress: $radius-circle;
 $width-upload-context: 25rem;
 
+.no_transition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
 .upload_context {
   font-size: 1.2rem;
   background-color: #c8dadf;

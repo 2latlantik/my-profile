@@ -105,6 +105,14 @@
                 <source>message.upload.error</source>
                 <target>Une erreur s'est produite lors du téléchargement</target>
             </trans-unit>
+            <trans-unit id="message.upload.error_type">
+                <source>message.upload.error_type</source>
+                <target>Le type de fichier n'est pas correct (type autorisé : %allowedTypes% )</target>
+            </trans-unit>
+            <trans-unit id="message.upload.error_size">
+                <source>message.upload.error_size</source>
+                <target>La taille du fichier est trop importante (taille maximale : %allowedSize% )</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

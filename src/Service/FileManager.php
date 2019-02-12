@@ -57,6 +57,16 @@ class FileManager
         }
     }
 
+    public function checkType($currentType, $allowedTypes): bool
+    {
+        return in_array($currentType, $allowedTypes);
+    }
+
+    public function checkSize($currentSize, $maxSize): bool
+    {
+        return ($currentSize > $maxSize) ? false : true;
+    }
+
     /**
      * @return string
      */
