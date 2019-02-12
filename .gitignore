@@ -22,3 +22,4 @@
 .idea/
 php-cs-fixer.phar
 /phpmd.xml
+.php_cs.cache

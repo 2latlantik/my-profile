@@ -26,7 +26,8 @@ class UploadType extends AbstractType
                 'label' => 'label.upload',
                 'attr' =>
                 [
-                    'class' => 'upload_file'
+                    'class' => 'upload_file',
+                    'placeholder' => 'label.upload'
                 ],
                 'required' => false
             ])

@@ -35,13 +35,12 @@
                     <img src="{{ form.vars.data.fileGroup.files.0.path }}"/>
                 {% endif %}
                 {{ form_widget(form.file) }}
-                {{ form_label(form.file) }}
                 {{ form_widget(form.name) }}
                 {{ form_widget(form.path) }}
             </div>
             <div class="card-footer">
-                <p class="upload-complete">{{ 'message.upload.complete'|trans }}</p>
-                <p class="upload-error">{{ 'message.upload.error'|trans }}</p>
+                <p class="upload-complete alert alert-success">{{ 'message.upload.complete'|trans }}</p>
+                <p class="upload-error alert alert-danger">{{ 'message.upload.error'|trans }}</p>
             </div>
         </div>
     {% endspaceless %}
