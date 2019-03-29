@@ -56,6 +56,42 @@ class ProfileController extends AbstractController
 
     /**
      * @Route(
+     *     "/profile-public",
+     *     name="back_profile_public",
+     *     methods={"GET", "POST"}
+     * )
+     * @param Request $request
+     * @param ProfileManager $profileManager
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function profilePagePublic(Request $request, ProfileManager $profileManager) :Response
+    {
+        return $this->render('public/profile.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     "/profile-dynamic",
+     *     name="back_profile_dynamic",
+     *     methods={"GET", "POST"}
+     * )
+     * @param Request $request
+     * @param ProfileManager $profileManager
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function profilePageDynamic(Request $request, ProfileManager $profileManager) :Response
+    {
+        $profile = $profileManager->getProfile();
+
+        return $this->render('public/profile_dynamic.html.twig', [
+            'profile' => $profile
+        ]);
+    }
+
+    /**
+     * @Route(
      *      "/upload",
      *     methods={"POST"}
      * )

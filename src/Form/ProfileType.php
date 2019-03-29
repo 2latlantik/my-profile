@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\Type\RichTextType;
 use App\Form\Type\TagsType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -47,6 +48,14 @@ class ProfileType extends AbstractType
                 ],
                 'ico' => 'birthday-cake'
             ])
+            ->add('postalCode', null, [
+                'label' => 'label.postal_code',
+                'ico' => 'home'
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+                'ico' => 'home'
+            ])
             ->add('gender', ChoiceType::class, [
                 'label' => 'label.gender',
                 'choices' => [
@@ -55,6 +64,9 @@ class ProfileType extends AbstractType
                 ],
                 'required' => false,
                 'ico' => 'venus-mars'
+            ])
+            ->add('presentation', RichTextType::class, [
+                'data_class' => Profile::class
             ])
             ->add('profilePicture', FileGroupType::class, [
                 'label' => 'label.profile_picture',

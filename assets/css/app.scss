@@ -3,11 +3,14 @@
 @import 'helpers/color';
 @import 'helpers/font';
 @import 'helpers/mixins.border';
+@import 'helpers/mixins.box_shadow';
+@import 'helpers/mixins.linear_gradient';
 
 // librairies
 @import '~bootstrap/scss/bootstrap';
 @import '~font-awesome/scss/font-awesome';
 @import '~bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
+@import '~quill/dist/quill.snow.css';
 
 // components importation
 @import 'components/body';
@@ -21,6 +24,7 @@
 @import 'pages/index';
 @import 'pages/security';
 @import 'pages/profile';
+@import 'pages/profile_public';
 
 // layouts importation
 @import 'layouts/responsive.index';

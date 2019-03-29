@@ -43,11 +43,46 @@ class Profile
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $job;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $postalCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $richTextDelta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $richTextHtml;
 
     /**
      * One profile has one profilePicture
@@ -141,6 +176,25 @@ class Profile
     }
 
     /**
+     * @return null|string
+     */
+    public function getJob(): ?string
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param null|string $job
+     * @return Profile
+     */
+    public function setJob(?string $job): self
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
      * @return \DateTimeInterface|null
      */
     public function getBirthDate(): ?\DateTimeInterface
@@ -155,6 +209,82 @@ class Profile
     public function setBirthDate(?\DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param null|string $postalCode
+     * @return Profile
+     */
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param null|string $city
+     * @return Profile
+     */
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRichTextDelta(): ?string
+    {
+        return $this->richTextDelta;
+    }
+
+    /**
+     * @param null|string $richTextDelta
+     * @return Profile
+     */
+    public function setRichTextDelta(?string $richTextDelta): self
+    {
+        $this->richTextDelta = $richTextDelta;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRichTextHtml(): ?string
+    {
+        return $this->richTextHtml;
+    }
+
+    /**
+     * @param null|string $richTextHtml
+     * @return Profile
+     */
+    public function setRichTextHtml(?string $richTextHtml): self
+    {
+        $this->richTextHtml = $richTextHtml;
 
         return $this;
     }

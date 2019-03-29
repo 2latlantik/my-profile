@@ -194,3 +194,12 @@
         </div>
     </div>
 {% endblock %}
+
+{% block rich_text_widget %}
+    <div class="editor--area">
+        <div class="editor--container">
+        </div>
+        {{ form_widget(form.richTextDelta) }}
+        {{ form_widget(form.richTextHtml) }}
+    </div>
+{% endblock %}
