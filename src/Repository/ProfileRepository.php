@@ -29,7 +29,9 @@ class ProfileRepository extends ServiceEntityRepository
             ->leftJoin('p.schoolPaths', 'sp')
             ->leftJoin('p.professionnalExperiences', 'pe')
             ->leftJoin('p.tags', 't')
-            ->select('p, sp, pe, t')
+            ->leftJoin('p.profilePicture', 'pp')
+            ->leftJoin('pp.files', 'ppf')
+            ->select('p, sp, pe, t, pp, ppf')
             ->where('p.user = :user')
             ->setParameter('user', $user)
             ->getQuery();

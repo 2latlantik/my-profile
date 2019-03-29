@@ -10,10 +10,19 @@
     </div>
     <div class="profile--main--data">
         <div>
-            {{ form_row(surname) }}
-            {{ form_row(name) }}
-            {{ form_row(birthDate) }}
-            {{ form_row(gender) }}
+            <div class="row">
+                <div class="col-sm">{{ form_row(surname) }}</div>
+                <div class="col-sm">{{ form_row(name) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">{{ form_row(birthDate) }}</div>
+                <div class="col-sm">{{ form_row(gender) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">{{ form_row(postalCode) }}</div>
+                <div class="col-sm">{{ form_row(city) }}</div>
+            </div>
+            {{ form_row(presentation) }}
         </div>
     </div>
 </div>

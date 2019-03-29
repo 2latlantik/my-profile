@@ -130,6 +130,18 @@
                 <source>label.strong_point.title</source>
                 <target>Points forts</target>
             </trans-unit>
+            <trans-unit id="label.postal_code">
+                <source>label.postal_code</source>
+                <target>Code postal</target>
+            </trans-unit>
+            <trans-unit id="label.city">
+                <source>label.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="label.presentation">
+                <source>label.presentation</source>
+                <target>Présentation</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

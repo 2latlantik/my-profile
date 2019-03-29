@@ -11,7 +11,11 @@
         }
         only
     %}
-    {% include 'blocks/main.index.html.twig' %}
+    {% include 'blocks/main.index.html.twig' with {
+            'user' : app.user
+        }
+        only
+    %}
     {% include 'blocks/footer.html.twig' with {
             'class' : {0:'index'}
         }

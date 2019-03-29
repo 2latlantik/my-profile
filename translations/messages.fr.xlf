@@ -91,6 +91,10 @@
                 <source>label.skill</source>
                 <target>Compétence</target>
             </trans-unit>
+            <trans-unit id="label.age">
+                <source>label.age</source>
+                <target>{1}1 an|]1, Inf[%count% ans</target>
+            </trans-unit>
 
             <trans-unit id="message.receive_account_token">
                 <source>message.receive_account_token</source>
