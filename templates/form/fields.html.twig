@@ -125,6 +125,7 @@
             </div>
             <div class="card-body">
                 <div>{{ form_widget(form.label) }}</div>
+                <div>{{ form_widget(form.notEvaluated) }}</div>
                 <div>{{ form_widget(form.progression) }}</div>
             </div>
         </div>
@@ -201,5 +202,22 @@
         </div>
         {{ form_widget(form.richTextDelta) }}
         {{ form_widget(form.richTextHtml) }}
+    </div>
+{% endblock %}
+
+{% block my_range_widget %}
+    <div class="row progression--area">
+        <div >{{ form_widget(form.range) }}</div>
+        <div >{{ form_widget(form.value) }} / {{ max_range }}</div>
+    </div>
+{% endblock %}
+
+{% block leisure_label %}
+    <h2 class="profile--title">{{ label|trans({}, 'form') }}</h2>
+{% endblock %}
+
+{% block _profile_leisure_leisure_row %}
+    <div class="leisure--area">
+        {{ form_widget(form) }}
     </div>
 {% endblock %}

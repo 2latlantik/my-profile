@@ -38,8 +38,6 @@ class FileListener
         foreach ($uow->getIdentityMap() as $groupEntity) {
             foreach ($groupEntity as $entity) {
                 if ($entity instanceof File && null !== $entity->getFile()) {
-                    dump($entity);
-                    exit();
                     $this->fileManager->deletePrevFile($entity);
 
                     $fileName = $this->fileManager->upload($entity);

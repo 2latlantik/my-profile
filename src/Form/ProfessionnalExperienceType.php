@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\ProfessionalExperience;
+use App\Form\Type\RichTextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,9 +32,8 @@ class ProfessionnalExperienceType extends AbstractType
                 'label' => 'label.professionnal_experience.location',
                 'ico' => 'map-marker',
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'label.professionnal_experience.description',
-                'ico' => 'pencil',
+            ->add('description', RichTextType::class, [
+                'data_class' => ProfessionalExperience::class
             ])
             ->add('start', DateType::class, [
                 'label' => 'label.professionnal_experience.start',
@@ -54,7 +53,8 @@ class ProfessionnalExperienceType extends AbstractType
                 'attr' => [
                     'class' =>  'js-datepicker'
                 ],
-                'ico' => 'calendar'
+                'ico' => 'calendar',
+                'required' => false
             ]);
     }
 

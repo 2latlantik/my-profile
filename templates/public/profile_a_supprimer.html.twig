@@ -1,11 +1,10 @@
 {% extends 'layout/base.html.twig' %}
 
 {% block body %}
-    {{ dump(profile) }}
 <div class="container-fluid wrapper">
     <div class="h1_container">
         <h1>
-            {{ profile.name }} {{ profile.surname }} <br> {{ profile.job }}
+            COUDENNE Nicolas <br> Développeur Web
         </h1>
     </div>
     <div class="layout__first__level">
@@ -13,17 +12,19 @@
                 <div class="cv__photo_and_skills">
                     <div>
                         <div class="cv__photo">
-                            <img src="{{ profile.profilePicture.files.0.path }}" width="200"/>
+                            <img src="https://via.placeholder.com/200" width="200"/>
                             <ul>
-                                <li>{{ 'label.age'|trans({'%count%': profile.birthDate|age}) }}</li>
+                                <li>38 ans</li>
                                 <li>Sainte Geneviève Des Bois</li>
                             </ul>
                         </div>
                     </div>
                     <div class="cv__skills">
-                        {% for tag in profile.tags %}
-                            <span class="cv__badge">{{ tag.name }}</span>
-                        {% endfor %}
+                        <span class="cv__badge">Symfony</span>
+                        <span class="cv__badge">PHP</span>
+                        <span class="cv__badge">MySQL</span>
+                        <span class="cv__badge">HTML5</span>
+                        <span class="cv__badge">CSS3</span>
                     </div>
                 </div>
 

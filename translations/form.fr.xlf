@@ -98,6 +98,10 @@
                 <source>label.skill.progression</source>
                 <target>Progression</target>
             </trans-unit>
+            <trans-unit id="label.skill.not_evaluated">
+                <source>label.skill.not_evaluated</source>
+                <target>Non évalué</target>
+            </trans-unit>
             <trans-unit id="label.professional_experiences">
                 <source>label.professional_experiences</source>
                 <target>Expériences professionnelle</target>
@@ -141,6 +145,62 @@
             <trans-unit id="label.presentation">
                 <source>label.presentation</source>
                 <target>Présentation</target>
+            </trans-unit>
+            <trans-unit id="label.mail">
+                <source>label.mail</source>
+                <target>Adresse mail</target>
+            </trans-unit>
+            <trans-unit id="label.phone">
+                <source>label.phone</source>
+                <target>N° de téléphone</target>
+            </trans-unit>
+            <trans-unit id="label.viadeo">
+                <source>label.viadeo</source>
+                <target>Profil Viadeo</target>
+            </trans-unit>
+            <trans-unit id="label.linkedin">
+                <source>label.linkedin</source>
+                <target>Profil Linkedin</target>
+            </trans-unit>
+            <trans-unit id="label.situation">
+                <source>label.situation</source>
+                <target>Situation professionnelle</target>
+            </trans-unit>
+            <trans-unit id="label.situation_goal">
+                <source>label.situation_goal</source>
+                <target>Attitude vis à vis du marché</target>
+            </trans-unit>
+            <trans-unit id="label.situation_goal.active_search">
+                <source>label.situation_goal.active_search</source>
+                <target>En recherche active</target>
+            </trans-unit>
+            <trans-unit id="label.situation_goal.listen_opportunity">
+                <source>label.situation_goal.listen_opportunity</source>
+                <target>A l'écoute d'opportunités</target>
+            </trans-unit>
+            <trans-unit id="label.situation_goal.not_listen_opportunity">
+                <source>label.situation_goal.not_listen_opportunity</source>
+                <target>Pas à l'écoute du marché</target>
+            </trans-unit>
+            <trans-unit id="label.situation_state">
+                <source>label.situation_state</source>
+                <target>Situation professionnelle</target>
+            </trans-unit>
+            <trans-unit id="label.situation_state.salaried">
+                <source>label.situation_state.salaried</source>
+                <target>Salarié</target>
+            </trans-unit>
+            <trans-unit id="label.situation_state.unemploed">
+                <source>label.situation_state.unemployed</source>
+                <target>Sans emploi</target>
+            </trans-unit>
+            <trans-unit id="label.job">
+                <source>label.job</source>
+                <target>Poste occupé / souhaité</target>
+            </trans-unit>
+            <trans-unit id="label.hobbies">
+                <source>label.hobbies</source>
+                <target>Loisirs</target>
             </trans-unit>
         </body>
     </file>

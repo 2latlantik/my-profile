@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Profile
@@ -38,9 +39,15 @@ class Profile
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"surname", "name"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -85,16 +92,59 @@ class Profile
     private $richTextHtml;
 
     /**
-     * One profile has one profilePicture
-     * @OneToOne(targetEntity="App\Entity\FileGroup", cascade={"persist"}, fetch="EAGER")
-     * @ORM\JoinColumn(nullable=true)
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $profilePicture;
+    private $mail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $viadeo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $linkedin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $situationState;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $situationGoal;
+
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $gender;
+
+    /**
+     * One profile has one profilePicture
+     * @OneToOne(targetEntity="App\Entity\FileGroup", cascade={"persist"}, fetch="EAGER")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $profilePicture;
 
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\SchoolPath", mappedBy="profile", cascade={"persist"})
@@ -117,6 +167,13 @@ class Profile
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      */
     private $tags;
+
+    /**
+     * One profile has one Leisure
+     * @OneToOne(targetEntity="App\Entity\Leisure", cascade={"persist"}, fetch="EAGER")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $leisure;
 
     /**
      * Profile constructor.
@@ -171,6 +228,25 @@ class Profile
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param null|string $slug
+     * @return Profile
+     */
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
@@ -285,6 +361,120 @@ class Profile
     public function setRichTextHtml(?string $richTextHtml): self
     {
         $this->richTextHtml = $richTextHtml;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param null|string $mail
+     * @return Profile
+     */
+    public function setMail(?string $mail): self
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param null|string $phone
+     * @return Profile
+     */
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getViadeo(): ?string
+    {
+        return $this->viadeo;
+    }
+
+    /**
+     * @param null|string $viadeo
+     * @return Profile
+     */
+    public function setViadeo(?string $viadeo): self
+    {
+        $this->viadeo = $viadeo;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * @param null|string $linkedin
+     * @return Profile
+     */
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSituationState(): ?string
+    {
+        return $this->situationState;
+    }
+
+    /**
+     * @param null|string $situationState
+     * @return Profile
+     */
+    public function setSituationState(?string $situationState): self
+    {
+        $this->situationState = $situationState;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getSituationGoal(): ?string
+    {
+        return $this->situationGoal;
+    }
+
+    /**
+     * @param null|string $situationGoal
+     * @return Profile
+     */
+    public function setSituationGoal(?string $situationGoal): self
+    {
+        $this->situationGoal = $situationGoal;
 
         return $this;
     }
@@ -450,5 +640,27 @@ class Profile
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @return Leisure
+     */
+    public function getLeisure() :Leisure
+    {
+        if (empty($this->leisure)) {
+            $this->leisure = new Leisure();
+        }
+        return $this->leisure;
+    }
+
+    /**
+     * @param Leisure $leisure
+     * @return Profile
+     */
+    public function setLeisure(Leisure $leisure): self
+    {
+        $this->leisure = $leisure;
+
+        return $this;
     }
 }

@@ -44,9 +44,16 @@ class ProfessionalExperience
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private $richTextDelta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $richTextHtml;
 
     /**
      * @var date
@@ -58,7 +65,7 @@ class ProfessionalExperience
     /**
      * @var date
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $end;
 
@@ -135,18 +142,37 @@ class ProfessionalExperience
     /**
      * @return null|string
      */
-    public function getDescription(): ?string
+    public function getRichTextDelta(): ?string
     {
-        return $this->description;
+        return $this->richTextDelta;
     }
 
     /**
-     * @param null|string $description
-     * @return self
+     * @param null|string $richTextDelta
+     * @return Profile
      */
-    public function setDescription(?string $description): self
+    public function setRichTextDelta(?string $richTextDelta): self
     {
-        $this->description = $description;
+        $this->richTextDelta = $richTextDelta;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getRichTextHtml(): ?string
+    {
+        return $this->richTextHtml;
+    }
+
+    /**
+     * @param null|string $richTextHtml
+     * @return Profile
+     */
+    public function setRichTextHtml(?string $richTextHtml): self
+    {
+        $this->richTextHtml = $richTextHtml;
 
         return $this;
     }

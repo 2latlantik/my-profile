@@ -37,4 +37,14 @@ class ProfileRepository extends ServiceEntityRepository
             ->getQuery();
         return $query;
     }
+
+    public function getRandomEntities($count = 10)
+    {
+        return  $this->createQueryBuilder('p')
+            ->addSelect('RAND() as HIDDEN rand')
+            ->addOrderBy('rand')
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult();
+    }
 }

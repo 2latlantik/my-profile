@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Skill;
+use App\Form\Type\MyRangeType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,13 +20,21 @@ class SkillType extends AbstractType
             ->add('label', null, [
                 'label' => 'label.skill.label'
             ])
-            ->add('progression', RangeType::class, [
+            ->add('progression', MyRangeType::class, [
                 'label' => 'label.skill.progression',
                 'attr' => [
-                    'min' => 1,
-                    'max' => 100
+                    'min' => 0,
+                    'max' => 100,
+                    'step' => 5
                 ]
-            ]);
+            ])
+            ->add('notEvaluated', null, [
+                'label' => 'label.skill.not_evaluated',
+                'attr' => [
+                    'class' => 'not--evaluated--input'
+                ]
+            ])
+        ;
     }
 
     /**

@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
 
     let postAdding = function () {
@@ -7,7 +8,25 @@ $(document).ready(function() {
             todayBtn: true,
             language: "fr"
         });
-
+        let richTexts = document.getElementsByClassName('editor--area');
+        Array.from(richTexts).forEach(function(child) {
+            let editorContainer = child.getElementsByClassName('editor--container');
+            if(editorContainer.length > 0 && child.dataset.instanciate !== 'true') {
+                let quill = new Quill(editorContainer[0], {
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic'],
+                            ['link', 'blockquote', 'code-block', 'image'],
+                            [{list: 'ordered'}, {list: 'bullet'}]
+                        ]
+                    },
+                    placeholder: 'Compose an epic...',
+                    theme: 'snow'
+                });
+                new RichText(child, quill);
+                child.dataset.instanciate = 'true';
+            }
+        });
     };
 
     let postAdding2 = function () {
@@ -15,12 +34,23 @@ $(document).ready(function() {
         Array.from(collections).forEach(function(collection) {
             if(collection.dataset.instanciate !== 'true') {
                 let config = [];
+                config['post_adding'] = postAddingItem;
                 config['button_delete_value'] = '<i class="fa fa-trash"></i>';
                 config['collection__item'] = 'skill--item';
                 let c = new Collection(collection, config);
                 c.display();
             }
         });
+    };
+
+    let postAddingItem = function () {
+        let rangeInputs = this.collection.getElementsByClassName('range--input');
+        Array.from(rangeInputs).forEach(function(child) {
+            if(child.dataset.instanciate !== 'true') {
+                new RangeInput(child);
+            }
+        });
+        evaluatedInputs();
     };
 
     let collections = document.getElementsByClassName('collection');
@@ -59,5 +89,46 @@ $(document).ready(function() {
         postAdding2();
     });
 
+    let rangeInputs = document.getElementsByClassName('range--input');
+    Array.from(rangeInputs).forEach(function(child) {
+        new RangeInput(child);
+    });
+
+
+    function evaluatedInputs() {
+        let notEvaluatedInputs = document.getElementsByClassName('not--evaluated--input');
+        Array.from(notEvaluatedInputs).forEach(function (child) {
+            if(child.dataset.instanciate !== true) {
+                addEventEvaluatedInput(child);
+                notEvaluatedProcess(child);
+                child.dataset.instanciate = 'true';
+            }
+        });
+    }
+
+    evaluatedInputs();
+
+    function addEventEvaluatedInput(elt) {
+        elt.addEventListener('click', (e) => {
+            /*let skillItem = elt.closest('.skill--item');
+            let area = skillItem.getElementsByClassName('progression--area')[0];
+            if(elt.checked == true) {
+                area.style.display = 'none';
+            } else {
+                area.style.display = 'flex';
+            }*/
+            notEvaluatedProcess(elt);
+        });
+    }
+
+    function notEvaluatedProcess(elt) {
+        let skillItem = elt.closest('.skill--item');
+        let area = skillItem.getElementsByClassName('progression--area')[0];
+        if(elt.checked == true) {
+            area.style.display = 'none';
+        } else {
+            area.style.display = 'flex';
+        }
+    }
 
 });

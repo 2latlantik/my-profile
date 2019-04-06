@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Profile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -15,10 +17,29 @@ class PublicController extends AbstractController
      *     "/",
      *     name="homepage"
      * )
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        return $this->render('public/index.html.twig');
+        $profiles = $this->getDoctrine()->getRepository(Profile::class)->getRandomEntities();
+
+        return $this->render('public/index.html.twig', [
+            'profiles' => $profiles
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     "/mp/{slug}",
+     *     name="one_profile"
+     * )
+     * @param Profile $profile
+     * @return Response
+     */
+    public function oneProfile(Profile $profile): Response
+    {
+        return $this->render('public/profile.html.twig', [
+            'profile' => $profile
+        ]);
     }
 }
