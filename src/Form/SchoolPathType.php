@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\SchoolPath;
+use App\Form\Type\RichTextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,9 +32,8 @@ class SchoolPathType extends AbstractType
                 'label' => 'label.school_path.degree_level',
                 'ico' => 'line-chart',
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'label.school_path.description',
-                'ico' => 'pencil',
+            ->add('description', RichTextType::class, [
+                'data_class' => SchoolPath::class
             ])
             ->add('start', DateType::class, [
                 'label' => 'label.school_path.start',

@@ -40,6 +40,13 @@ class Skill
     private $progression;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="not_evaluated", type="boolean", options={"default":"0"})
+     */
+    private $notEvaluated;
+
+    /**
      * @return int|null
      */
     public function getId() : ?int
@@ -101,5 +108,27 @@ class Skill
         $this->progression = $progression;
 
         return $this;
+    }
+
+    /**
+     * set notEvaluated
+     *
+     * @param bool $notEvaluated
+     * @return Skill
+     */
+    public function setNotEvaluated(bool $notEvaluated): Skill
+    {
+        $this->notEvaluated = $notEvaluated;
+        return $this;
+    }
+
+    /**
+     * Get notEvaluated
+     *
+     * @return bool
+     */
+    public function getNotEvaluated(): bool
+    {
+        return $this->notEvaluated;
     }
 }

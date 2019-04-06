@@ -20,15 +20,27 @@
                             'gender': form.gender,
                             'postalCode': form.postalCode,
                             'city': form.city,
+                            'mail': form.mail,
+                            'phone': form.phone,
+                            'viadeo': form.viadeo,
+                            'linkedin': form.linkedin,
                             'profilePicture': form.profilePicture,
                             'presentation' : form.presentation
                         }
                         only
                     %}
+                    {% include 'form/profile/_situation.html.twig'
+                        with {
+                            'state': form.situationState,
+                            'goal': form.situationGoal,
+                            'job': form.job
+                        }
+                        only
+                    %}
                     {% include 'form/profile/_strong_point.html.twig'
                         with {
-                        'tags': form.tags
-                    }
+                            'tags': form.tags
+                        }
                         only
                     %}
                     {% include 'form/profile/_school_path.html.twig'
@@ -47,6 +59,12 @@
                         with {
                         'skillGroups': form.skillGroups
                     }
+                        only
+                    %}
+                    {% include 'form/profile/_leisure.html.twig'
+                        with {
+                            'leisure': form.leisure
+                        }
                         only
                     %}
                     <button type="submit" class="btn btn-primary">{{ "action.profile.do"|trans() }}</button>

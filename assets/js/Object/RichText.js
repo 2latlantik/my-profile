@@ -19,8 +19,10 @@ class RichText {
     }
 
     setContent() {
-        let delta = JSON.parse(this.inputDelta.value);
-        this.quill.setContents(delta, 'api');
+        if(this.inputDelta.value !== '') {
+            let delta = JSON.parse(this.inputDelta.value);
+            this.quill.setContents(delta, 'api');
+        }
     }
 
     blurEditor(e) {

@@ -157,6 +157,17 @@ $width-upload-context: 25rem;
 }
 
 /*
+  Professionnal situation
+ */
+
+.professionnal--situation {
+  border: 1px solid #DDDDDD;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2),
+  -2px -2px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+/*
   School Path
  */
 .collection--root {
@@ -175,6 +186,7 @@ $width-upload-context: 25rem;
     .profile--item {
       flex: 0 0 33.33%;
       padding: 0.5rem;
+      max-width: 33.33%;
     }
 
   }
@@ -224,16 +236,40 @@ $width-upload-context: 25rem;
     display: flex;
     flex-direction: row;
     margin-bottom: 1rem;
-    div {
-      padding: 0 3rem;
+    div:nth-child(1) {
+      padding: 0 2rem;
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: 0;
     }
-
+    div:nth-child(2) {
+      padding: 0 2rem;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+    }
+    div:nth-child(3) {
+      padding: 0 2rem;
+      flex-grow: 2;
+      flex-shrink: 2;
+      flex-basis: 0;
+    }
   }
 }
 
 .editor--container {
   height: 100px;
+}
+
+.range--value {
+  display: initial !important;
+  width: unset !important;
+  text-align: right;
+}
+
+.leisure--area {
+  border: 1px solid #DDDDDD;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2),
+  -2px -2px 10px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
 }

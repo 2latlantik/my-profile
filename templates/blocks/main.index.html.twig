@@ -31,48 +31,33 @@
                 </div>
                 <div data-ride="carousel" id="postsCarousel" class="my-carousel-item carousel slide">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-5"><img class="img-fluid" src="stock/profil.jpg" alt="Pic profile"></div>
-                                        <div class="col-7">
-                                            <span class="badge badge-pill badge-primary">Symfony</span>
-                                            <span class="badge badge-pill badge-primary">PHP 7</span>
-                                            <span class="badge badge-pill badge-primary">MySQL</span>
-                                            <span class="badge badge-pill badge-primary">CSS</span>
+                        {% for p in profiles %}
+                            <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                {% if p.profilePicture is not empty %}
+                                                    <img class="img-fluid" src="{{ p.profilePicture.files.0.path }}" alt="{{ p.name ~ ' ' ~ p.surname }}">
+                                                {% endif  %}
+                                            </div>
+                                            <div class="col-7">
+                                                {% for tag in p.tags %}
+                                                    <span class="badge badge-pill badge-primary">{{ tag.name }}</span>
+                                                {% endfor %}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="http://www.nicolas-coudenne.fr" target="_blank" class="card-link">Nicolas Coudenne</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-5"><img class="img-fluid" src="stock/profil.jpg" alt="Pic profile"></div>
-                                        <div class="col-7">
-                                            <span class="badge badge-pill badge-primary">Symfony</span>
-                                            <span class="badge badge-pill badge-primary">PHP 7</span>
-                                            <span class="badge badge-pill badge-primary">MySQL</span>
-                                            <span class="badge badge-pill badge-primary">CSS</span>
-                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="{{ path('one_profile', {'slug': p.slug}) }}" target="_blank" class="card-link">{{ p.surname ~ ' ' ~ p.name }}</a></h5>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="http://www.nicolas-coudenne.fr" target="_blank" class="card-link">Nicolas Coudenne</a></h5>
-                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </main>

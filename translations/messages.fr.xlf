@@ -4,7 +4,11 @@
         <body>
             <trans-unit id="action.profile.to">
                 <source>action.profile.to</source>
-                <target>Profil</target>
+                <target>Editer le profil</target>
+            </trans-unit>
+            <trans-unit id="action.profile_public.to">
+                <source>action.profile_public.to</source>
+                <target>Profil public</target>
             </trans-unit>
             <trans-unit id="action.login">
                 <source>action.login</source>
@@ -38,6 +42,7 @@
                 <source>action.profile.do</source>
                 <target>Mettre à jour le profil</target>
             </trans-unit>
+
             <trans-unit id="title.home">
                 <source>title.home</source>
                 <target>Accueil</target>
@@ -75,6 +80,30 @@
                 <target>Identité</target>
             </trans-unit>
 
+            <trans-unit id="label.profile.contact">
+                <source>label.profile.contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="label.profile.situation">
+                <source>label.profile.situation</source>
+                <target>Situation</target>
+            </trans-unit>
+            <trans-unit id="label.profile.presentation">
+                <source>label.profile.presentation</source>
+                <target>Présentation</target>
+            </trans-unit>
+            <trans-unit id="label.profile.professionnals_experiences">
+                <source>label.profile.professionnals_experiences</source>
+                <target>Expériences professionnelles</target>
+            </trans-unit>
+            <trans-unit id="label.profile.school_path">
+                <source>label.profile.school_path</source>
+                <target>Cursus scolaire</target>
+            </trans-unit>
+            <trans-unit id="label.profile.hobbies">
+                <source>label.profile.hobbies</source>
+                <target>Loisirs</target>
+            </trans-unit>
             <trans-unit id="label.homepage.goal_site">
                 <source>label.homepage.goal_site</source>
                 <target>Créez un profil professionnel à votre image</target>
@@ -91,6 +120,10 @@
                 <source>label.skill</source>
                 <target>Compétence</target>
             </trans-unit>
+            <trans-unit id="label.skills">
+                <source>label.skills</source>
+                <target>Compétences</target>
+            </trans-unit>
             <trans-unit id="label.age">
                 <source>label.age</source>
                 <target>{1}1 an|]1, Inf[%count% ans</target>
@@ -104,6 +137,18 @@
             <trans-unit id="message.upload.complete">
                 <source>message.upload.complete</source>
                 <target>Le téléchargement est terminé</target>
+            </trans-unit>
+            <trans-unit id="message.start.without_end">
+                <source>message.start.without_end</source>
+                <target>Depuis</target>
+            </trans-unit>
+            <trans-unit id="message.start.with_end">
+                <source>message.start.with_end</source>
+                <target>De</target>
+            </trans-unit>
+            <trans-unit id="message.end">
+                <source>message.end</source>
+                <target>à</target>
             </trans-unit>
             <trans-unit id="message.upload.error">
                 <source>message.upload.error</source>

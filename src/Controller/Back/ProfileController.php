@@ -30,7 +30,7 @@ class ProfileController extends AbstractController
      * @Security("is_granted('ROLE_USER')")
      * @param Request $request
      * @param ProfileManager $profileManager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function profilePage(Request $request, ProfileManager $profileManager) :Response
     {
@@ -58,35 +58,17 @@ class ProfileController extends AbstractController
      * @Route(
      *     "/profile-public",
      *     name="back_profile_public",
-     *     methods={"GET", "POST"}
+     *     methods={"GET"}
      * )
-     * @param Request $request
      * @param ProfileManager $profileManager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function profilePagePublic(Request $request, ProfileManager $profileManager) :Response
-    {
-        return $this->render('public/profile.html.twig', [
-
-        ]);
-    }
-
-    /**
-     * @Route(
-     *     "/profile-dynamic",
-     *     name="back_profile_dynamic",
-     *     methods={"GET", "POST"}
-     * )
-     * @param Request $request
-     * @param ProfileManager $profileManager
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function profilePageDynamic(Request $request, ProfileManager $profileManager) :Response
+    public function profilePagePublic(ProfileManager $profileManager) :Response
     {
         $profile = $profileManager->getProfile();
 
-        return $this->render('public/profile_dynamic.html.twig', [
-            'profile' => $profile
+        return $this->render('/public/profile.html.twig', [
+            'profile' =>$profile
         ]);
     }
 

@@ -48,14 +48,6 @@ class ProfileType extends AbstractType
                 ],
                 'ico' => 'birthday-cake'
             ])
-            ->add('postalCode', null, [
-                'label' => 'label.postal_code',
-                'ico' => 'home'
-            ])
-            ->add('city', null, [
-                'label' => 'label.city',
-                'ico' => 'home'
-            ])
             ->add('gender', ChoiceType::class, [
                 'label' => 'label.gender',
                 'choices' => [
@@ -65,6 +57,51 @@ class ProfileType extends AbstractType
                 'required' => false,
                 'ico' => 'venus-mars'
             ])
+            ->add('postalCode', null, [
+                'label' => 'label.postal_code',
+                'ico' => 'home'
+            ])
+            ->add('city', null, [
+                'label' => 'label.city',
+                'ico' => 'home'
+            ])
+            ->add('mail', null, [
+                'label' => 'label.mail',
+                'ico' => 'envelope-o'
+            ])
+            ->add('phone', null, [
+                'label' => 'label.phone',
+                'ico' => 'mobile'
+            ])
+            ->add('viadeo', null, [
+                'label' => 'label.viadeo',
+                'ico' => 'viadeo'
+            ])
+            ->add('linkedin', null, [
+                'label' => 'label.linkedin',
+                'ico' => 'linkedin'
+            ])
+            ->add('situationState', ChoiceType::class, [
+                'label' => 'label.situation_state',
+                'choices' => [
+                    'label.situation_state.salaried' => 'salaried',
+                    'label.situation_state.unemployed' => 'unemployed'
+                ],
+                'ico' => 'square-o'
+            ])
+            ->add('situationGoal', ChoiceType::class, [
+                'label' => 'label.situation_goal',
+                'choices' => [
+                    'label.situation_goal.active_search' => 'active_search',
+                    'label.situation_goal.listen_opportunity' => 'listen_opportunity',
+                    'label.situation_goal.not_listen_opportunity' => 'not_listen_opportunity'
+                ],
+                'ico' => 'external-link'
+            ])
+            ->add('job', null, [
+                'label' => 'label.job'
+            ])
+
             ->add('presentation', RichTextType::class, [
                 'data_class' => Profile::class
             ])
@@ -72,16 +109,16 @@ class ProfileType extends AbstractType
                 'label' => 'label.profile_picture',
                 'multiple' => false,
             ])
-            ->add('schoolPaths', CollectionType::class, [
-                'entry_type' => SchoolPathType::class,
-                'label' => 'label.school_paths',
+            ->add('professionnalExperiences', CollectionType::class, [
+                'entry_type' => ProfessionnalExperienceType::class,
+                'label' => 'label.professional_experiences',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
             ])
-            ->add('professionnalExperiences', CollectionType::class, [
-                'entry_type' => ProfessionnalExperienceType::class,
-                'label' => 'label.professional_experiences',
+            ->add('schoolPaths', CollectionType::class, [
+                'entry_type' => SchoolPathType::class,
+                'label' => 'label.school_paths',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
@@ -95,6 +132,9 @@ class ProfileType extends AbstractType
             ])
             ->add('tags', TagsType::class, [
                 'label' => 'label.strong_point.title'
+            ])
+            ->add('leisure', LeisureType::class, [
+                'label' => 'label.hobbies'
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
