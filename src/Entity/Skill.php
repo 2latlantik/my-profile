@@ -35,7 +35,7 @@ class Skill
     /**
      * @var float
      *
-     * @ORM\Column(type="decimal", precision=5, scale=2)
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
     private $progression;
 
@@ -45,6 +45,11 @@ class Skill
      * @ORM\Column(name="not_evaluated", type="boolean", options={"default":"0"})
      */
     private $notEvaluated;
+
+    public function __construct()
+    {
+        $this->notEvaluated = 0;
+    }
 
     /**
      * @return int|null

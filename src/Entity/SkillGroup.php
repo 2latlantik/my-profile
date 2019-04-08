@@ -34,7 +34,12 @@ class SkillGroup
     private $profile;
 
     /**
-     *  @ORM\OneToMany(targetEntity="App\Entity\Skill", mappedBy="skillGroup", cascade={"persist"})
+     *  @ORM\OneToMany(
+     *     targetEntity="App\Entity\Skill",
+     *     mappedBy="skillGroup",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     *  )
      */
     private $skills;
 
@@ -107,6 +112,7 @@ class SkillGroup
      */
     public function removeSkill(Skill $skill): void
     {
+        dump($skill);
         $this->skills->removeElement($skill);
     }
 
