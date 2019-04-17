@@ -5,6 +5,8 @@
 
 .index-main-content {
   height:100vh;
+  min-height: 60rem;
+  max-width: 120rem;
   padding-top: 4rem;
   padding-bottom: 4rem;
   display: flex;
@@ -82,6 +84,7 @@
     .my-carousel {
       display: flex;
       flex-direction: column;
+      max-height: 25rem;
       .my-carousel-item {
         flex-grow: 1;
         flex-shrink: 1;

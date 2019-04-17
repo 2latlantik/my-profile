@@ -21,7 +21,7 @@
         </div>
         <div class="navigation-item profiles">
             <div class="row col-6 col-md-8 profiles-item my-carousel">
-                <div class="my-carousel-item lead btn-display">
+                {#<div class="my-carousel-item lead btn-display">
                     <div class="btn-item btn-item-left">
                         <a class="btn btn-danger" href="#postsCarousel" title="go back" data-slide="prev"><i class="fa fa-lg fa-chevron-circle-left"></i>&nbsp;</a>
                     </div>
@@ -29,10 +29,42 @@
                         <a class="btn btn-danger" href="#postsCarousel" title="more" data-slide="next"><i class="fa fa-lg fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
+                #}
                 <div data-ride="carousel" id="postsCarousel" class="my-carousel-item carousel slide">
                     <div class="carousel-inner">
                         {% for p in profiles %}
                             <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                                <div class="card-profile">
+                                    <div class="card-profile-header card-profile-header-blue">
+                                        {{ p.job }}
+                                    </div>
+                                    <div class="card-picture">
+                                        {#<span class="image--cover image--cover--blue">
+                                            <i class="fa fa-user fa-4x" aria-hidden="true"></i>
+                                        </span>#}
+                                        {% if p.profilePicture is not empty and p.profilePicture.files is not empty %}
+                                            <img class="image--cover" src="{{ p.profilePicture.files.0.path }}" alt="{{ p.name ~ ' ' ~ p.surname }}">
+                                        {% else %}
+                                            <span class="image--cover image--cover--blue">
+                                                <i class="fa fa-user fa-4x" aria-hidden="true"></i>
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                                    <div class="card-profile-body card-profile-body-blue">
+                                                        <p>{{ p.surname ~ ' ' ~ p.name }}</p>
+                                                        <p>{% for tag in p.tags %}
+                                                            <span class="badge badge-pill badge-primary">{{ tag.name }}</span>
+                                                            {% endfor %}</p>
+                                                        <span class="separator">
+                                        </span>
+                                                        <span>
+                                        <a href="{{ path('one_profile', {'slug': p.slug}) }}" class="btn">
+                                            {{ 'action.profile.go'|trans }}
+                                        </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                {#
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         <div class="row">
@@ -53,9 +85,18 @@
                                         <h5 class="card-title"><a href="{{ path('one_profile', {'slug': p.slug}) }}" target="_blank" class="card-link">{{ p.surname ~ ' ' ~ p.name }}</a></h5>
                                     </div>
                                 </div>
+                                #}
                             </div>
                         {% endfor %}
                     </div>
+                    <a class="carousel-control-prev" href="#postsCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#postsCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>

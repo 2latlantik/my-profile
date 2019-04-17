@@ -112,6 +112,12 @@ body {
   width:20rem;
   margin-right: auto;
   margin-left: auto;
+  .image--area {
+    width: 20rem;
+    height: 20rem;
+    line-height: 20rem;
+    background-color: #8c8c8c;
+  }
 }
 
 .cv__photo ul {
@@ -282,10 +288,18 @@ body {
       & > div {
         flex-grow: 1;
         flex-shrink: 1;
-        flex-basis: 50%;
+        flex-basis: 49%;
         margin-bottom: 0.8rem;
         height:1.8rem;
         line-height: 1.8rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        &:hover {
+          overflow: visible;
+          white-space: initial;
+          height: auto;
+        }
       }
       ul {
         padding: 0;

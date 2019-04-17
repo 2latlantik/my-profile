@@ -20,15 +20,18 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     /**
      * @param string $username
      * @return mixed|null|UserInterface
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function loadUserByUsername($username)
     {
         try {
-            return $this->createQueryBuilder('u')->where('u.username = :username OR u.email = :email')->setParameter(
-                'username',
-                $username
-            )->setParameter('email', $username)->getQuery()->getOneOrNullResult();
+            return
+                $this
+                    ->createQueryBuilder('u')
+                    ->where('u.username = :username OR u.email = :email')
+                    ->setParameter('username', $username)
+                    ->setParameter('email', $username)
+                    ->getQuery()
+                    ->getOneOrNullResult();
         } catch (NonUniqueResultException $e) {
             return null;
         }

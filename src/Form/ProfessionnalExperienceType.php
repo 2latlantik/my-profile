@@ -10,6 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ProfessionnalExperienceType
+ * @package App\Form
+ */
 class ProfessionnalExperienceType extends AbstractType
 {
 
@@ -33,7 +37,8 @@ class ProfessionnalExperienceType extends AbstractType
                 'ico' => 'map-marker',
             ])
             ->add('description', RichTextType::class, [
-                'data_class' => ProfessionalExperience::class
+                'data_class' => ProfessionalExperience::class,
+                'label' => 'label.description'
             ])
             ->add('start', DateType::class, [
                 'label' => 'label.professionnal_experience.start',

@@ -10,6 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class SchoolPathType
+ * @package App\Form
+ */
 class SchoolPathType extends AbstractType
 {
 
@@ -17,7 +21,7 @@ class SchoolPathType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) :void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
@@ -33,7 +37,8 @@ class SchoolPathType extends AbstractType
                 'ico' => 'line-chart',
             ])
             ->add('description', RichTextType::class, [
-                'data_class' => SchoolPath::class
+                'data_class' => SchoolPath::class,
+                'label' => 'label.description'
             ])
             ->add('start', DateType::class, [
                 'label' => 'label.school_path.start',
@@ -60,7 +65,7 @@ class SchoolPathType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(array(
             'data_class' => SchoolPath::class,

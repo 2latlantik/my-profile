@@ -18,6 +18,14 @@
                 <source>label.password</source>
                 <target>Mot de passe</target>
             </trans-unit>
+            <trans-unit id="label.password_old">
+                <source>label.password_old</source>
+                <target>Ancien mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.password_new">
+                <source>label.password_new</source>
+                <target>Nouveau mot de passe</target>
+            </trans-unit>
             <trans-unit id="label.password_repeat">
                 <source>label.password_repeat</source>
                 <target>Répéter le mot de passe</target>
@@ -201,6 +209,10 @@
             <trans-unit id="label.hobbies">
                 <source>label.hobbies</source>
                 <target>Loisirs</target>
+            </trans-unit>
+            <trans-unit id="label.description">
+                <source>label.description</source>
+                <target>Précisions</target>
             </trans-unit>
         </body>
     </file>
