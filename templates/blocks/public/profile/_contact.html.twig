@@ -1,0 +1,33 @@
+<div class="cv__block">
+    <div class="cv__title">
+        {{ 'label.profile.contact'|trans }}
+    </div>
+    <div class="cv__contact__method">
+        {% if mail is not empty %}
+            <div>
+                <i class="fa fa-envelope-o" aria-hidden="true" data-toggle="popover"
+                   data-placement="bottom" data-content="{{ mail }}"
+                   data-original-title="Mail"></i>
+            </div>
+        {% endif %}
+        {% if phone is not empty %}
+            <div>
+                <i class="fa fa-mobile" aria-hidden="true" data-toggle="popover" data-placement="bottom"
+                   data-content="{{ phone }}" data-original-title="Mobile"></i>
+            </div>
+        {% endif %}
+        {% if viadeo is not empty %}
+            <div>
+                <i class="fa fa-viadeo" aria-hidden="true" data-toggle="popover" data-placement="bottom"
+                   data-content="{{ viadeo }}" data-original-title="Viadeo"></i>
+            </div>
+        {% endif %}
+        {% if linkedin is not empty %}
+            <div>
+                <i class="fa fa-linkedin" aria-hidden="true" data-toggle="popover"
+                   data-placement="bottom" data-content="{{ linkedin }}"
+                   data-original-title="Linkedin"></i>
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -6,6 +6,10 @@
                 <source>action.profile.to</source>
                 <target>Editer le profil</target>
             </trans-unit>
+            <trans-unit id="action.profile.go">
+                <source>action.profile.go</source>
+                <target>Profil</target>
+            </trans-unit>
             <trans-unit id="action.profile_public.to">
                 <source>action.profile_public.to</source>
                 <target>Profil public</target>
@@ -70,6 +74,10 @@
             <trans-unit id="title.password_new">
                 <source>title.password_new</source>
                 <target>Définir un nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="title.password_change">
+                <source>title.password_change</source>
+                <target>Modifier son mot de passe</target>
             </trans-unit>
             <trans-unit id="title.profile">
                 <source>title.profile</source>
@@ -161,6 +169,10 @@
             <trans-unit id="message.upload.error_size">
                 <source>message.upload.error_size</source>
                 <target>La taille du fichier est trop importante (taille maximale : %allowedSize% )</target>
+            </trans-unit>
+            <trans-unit id="message.error.bad_old_password">
+                <source>message.error.bad_old_password</source>
+                <target>L'ancien mot de passe n'est pas le bon</target>
             </trans-unit>
         </body>
     </file>

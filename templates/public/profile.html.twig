@@ -17,9 +17,17 @@
                 <div class="cv__photo_and_skills">
                     <div>
                         <div class="cv__photo">
-                            <img src="/{{ profile.profilePicture.files.0.path }}" width="200"/>
+                            {% if profile.profilePicture is not empty and profile.profilePicture.files is not empty %}
+                                <img src="/{{ profile.profilePicture.files.0.path }}" width="200"/>
+                            {% else %}
+                                <div class="image--area">
+                                    <i class="fa fa-user fa-4x" aria-hidden="true"></i>
+                                </div>
+                            {% endif %}
                             <ul>
-                                <li>{{ 'label.age'|trans({'%count%': profile.birthDate|age}) }}</li>
+                                {% if profile.birthDate is not empty %}
+                                    <li>{{ 'label.age'|trans({'%count%': profile.birthDate|age}) }}</li>
+                                {% endif %}
                                 <li>{{ profile.city }}</li>
                             </ul>
                         </div>
@@ -30,146 +38,127 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="cv__block">
-                    <div class="cv__title">
-                        {{ 'label.profile.contact'|trans }}
-                    </div>
-                    <div class="cv__contact__method">
-                        {% if profile.mail is not empty %}
-                            <div>
-                                <i class="fa fa-envelope-o" aria-hidden="true" data-toggle="popover"
-                                   data-placement="bottom" data-content="{{ profile.mail }}"
-                                   data-original-title="Mail"></i>
-                            </div>
-                        {% endif %}
-                        {% if profile.phone is not empty %}
-                            <div>
-                                <i class="fa fa-mobile" aria-hidden="true" data-toggle="popover" data-placement="bottom"
-                                   data-content="{{ profile.phone }}" data-original-title="Mobile"></i>
-                            </div>
-                        {% endif %}
-                        {% if profile.viadeo is not empty %}
-                            <div>
-                                <i class="fa fa-viadeo" aria-hidden="true" data-toggle="popover" data-placement="bottom"
-                                   data-content="{{ profile.viadeo }}" data-original-title="Viadeo"></i>
-                            </div>
-                        {% endif %}
-                        {% if profile.linkedin is not empty %}
-                            <div>
-                                <i class="fa fa-linkedin" aria-hidden="true" data-toggle="popover"
-                                   data-placement="bottom" data-content="{{ profile.linkedin }}"
-                                   data-original-title="Linkedin"></i>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="cv__block">
-                    <div class="cv__title">
-                        {{ 'label.profile.situation'|trans }}
-                    </div>
-                    <div class="cv__body padding_point">
-                        {{ ('label.situation_state.' ~ profile.situationState)|trans([], 'form') }}
-                    </div>
-                    <div class="cv__body">
-                        {% if profile.situationGoal == 'active_search' %}
-                            <span class="point point--success"></span>
-                        {% elseif profile.situationGoal == 'listen_opportunity' %}
-                            <span class="point point--warning"></span>
-                        {% elseif profile.situationGoal == 'not_listen_opportunity' %}
-                            <span class="point point--danger"></span>
-                        {% endif %}
-                        {{ ('label.situation_goal.' ~ profile.situationGoal)|trans([], 'form') }}
-                    </div>
-                </div>
-                <div class="cv__block">
-                    <div class="cv__title">
-                        {{ 'label.profile.presentation'|trans }}
-                    </div>
-                    <div class="cv__body">
-                        <div class="body__text">
-                            {{ profile.richTextHtml|raw }}
-                        </div>
-                    </div>
-                </div>
+                {% if profile.mail is not empty
+                    or profile.phone is not empty
+                    or profile.viadeo is not empty
+                    or profile.linkedin is not empty
+                %}
+                    {% include 'blocks/public/profile/_contact.html.twig' with {
+                        'mail': profile.mail,
+                        'phone': profile.phone,
+                        'viadeo': profile.viadeo,
+                        'linkedin': profile.linkedin
+                    }
+                        only
+                    %}
+                {% else %}
+                    <div class="cv__block"></div>
+                {% endif %}
+                {% if profile.situationState is not empty
+                    or profile.situationGoal is not empty
+                %}
+                    {% include 'blocks/public/profile/_situation.html.twig' with {
+                        'situationGoal': profile.situationGoal,
+                        'situationState': profile.situationState
+                    }
+                        only
+                    %}
+                {% endif %}
+                {% if profile.richTextHtml is not empty %}
+                    {% include 'blocks/public/profile/_presentation.html.twig' with {
+                        'richTextHtml': profile.richTextHtml
+                    }
+                        only
+                    %}
+                {% endif %}
+
             </div>
             <div class="layout__col3__2">
-                <div>
-                    <h2>
-                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                        {{ 'label.profile.professionnals_experiences'|trans }}
-                    </h2>
-                    <div class="cv__sections">
-                        {% for pe in profile.professionnalExperiences %}
-                            <div class="cv__section">
-                                <h4>{{ pe.title }} </h4>
-                                <div class="cv__section__subtitle">{{ pe.society }}</div>
-                                <div class="cv__section__mention">
-                                    {{ period_start(pe.start, pe.end) }} {{ pe.start|localizeddate('none', 'none', null, null, 'MMMM Y') }}
-                                    {% if pe.end is not empty %}
-                                        {{ 'message.end'|trans }} {{ pe.end|localizeddate('none', 'none', null, null, 'MMMM Y') }}
-                                    {% endif %}
+                {% if profile.professionnalExperiences is not empty %}
+                    <div>
+                        <h2>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+                            {{ 'label.profile.professionnals_experiences'|trans }}
+                        </h2>
+                        <div class="cv__sections">
+                            {% for pe in profile.professionnalExperiences %}
+                                <div class="cv__section">
+                                    <h4>{{ pe.title }} </h4>
+                                    <div class="cv__section__subtitle">{{ pe.society }}</div>
+                                    <div class="cv__section__mention">
+                                        {{ period_start(pe.end) }} {{ pe.start|localizeddate('none', 'none', null, null, 'MMMM Y') }}
+                                        {% if pe.end is not empty %}
+                                            {{ 'message.end'|trans }} {{ pe.end|localizeddate('none', 'none', null, null, 'MMMM Y') }}
+                                        {% endif %}
+                                    </div>
+                                    {{ pe.richTextHtml|raw }}
                                 </div>
-                                {{ pe.richTextHtml|raw }}
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h2>
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        {{ 'label.profile.school_path'|trans }}
-                    </h2>
-                    <div class="cv__sections">
-                        {% for sp in profile.schoolPaths %}
-                            <div class="cv__section">
-                                <h4>{{ sp.title }}</h4>
-                                <div>{{ sp.richTextHtml|raw }}</div>
-                                <div>{{ sp.school }} </div>
-                            </div>
-                        {% endfor %}
+                {% endif %}
+                {% if profile.schoolPaths is not empty %}
+                    <div>
+                        <h2>
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            {{ 'label.profile.school_path'|trans }}
+                        </h2>
+                        <div class="cv__sections">
+                            {% for sp in profile.schoolPaths %}
+                                <div class="cv__section">
+                                    <h4>{{ sp.title }}</h4>
+                                    <div>{{ sp.richTextHtml|raw }}</div>
+                                    <div>{{ sp.school }} </div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
             <div class="layout__col3__3">
-                <h2>
-                    <i class="fa fa-tasks" aria-hidden="true"></i>
-                    {{ 'label.skills'|trans }}
-                </h2>
-                <div class="cv__sections">
-                    {% for sg in profile.skillGroups %}
-                        <div class="cv__section">
-                            <h4>{{ sg.label }}</h4>
-                            <div class="cv__section__skills">
-                                {% for skill in sg.skills %}
-                                    {% if skill.notEvaluated is same as(false) %}
-                                        <div>{{ skill.label }}</div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
-                                                 aria-valuenow="{{ skill.progression }}" aria-valuemin="0"
-                                                 aria-valuemax="100" style="width:{{ skill.progression }}%">
-                                                {{ skill.progression }}%
+                {% if profile.skillGroups is not empty %}
+                    <h2>
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                        {{ 'label.skills'|trans }}
+                    </h2>
+                    <div class="cv__sections">
+                        {% for sg in profile.skillGroups %}
+                            <div class="cv__section">
+                                <h4>{{ sg.label }}</h4>
+                                <div class="cv__section__skills">
+                                    {% for skill in sg.skills %}
+                                        {% if skill.notEvaluated is same as(false) %}
+                                            <div>{{ skill.label }}</div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
+                                                     aria-valuenow="{{ skill.progression }}" aria-valuemin="0"
+                                                     aria-valuemax="100" style="width:{{ skill.progression }}%">
+                                                    {{ skill.progression }}%
+                                                </div>
                                             </div>
-                                        </div>
-                                    {% else %}
-                                        <span><i class="fa fa-caret-right"
-                                                 aria-hidden="true"></i> {{ skill.label }}</span>
-                                    {% endif %}
-                                {% endfor %}
+                                        {% else %}
+                                            <span><i class="fa fa-caret-right"
+                                                     aria-hidden="true"></i> {{ skill.label }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if profile.leisure.richTextHtml is not empty %}
+                    <h2>
+                        <i class="fa fa-rocket" aria-hidden="true"></i>
+                        {{ 'label.profile.hobbies'|trans }}
+                    </h2>
+                    <div class="cv__sections">
+                        <div class="cv__section">
+                            <div class="cv__section__skills">
+                                {{ profile.leisure.richTextHtml|raw }}
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
-                <h2>
-                    <i class="fa fa-rocket" aria-hidden="true"></i>
-                    {{ 'label.profile.hobbies'|trans }}
-                </h2>
-                <div class="cv__sections">
-                    <div class="cv__section">
-                        <div class="cv__section__skills">
-                            {{ profile.leisure.richTextHtml|raw }}
-                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>

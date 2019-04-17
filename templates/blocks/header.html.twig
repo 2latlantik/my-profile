@@ -1,6 +1,9 @@
 {% if class is defined %}
     {% set class_header = class|join(' ') %}
 {% endif %}
+{% if user is defined and user is not empty %}
+    {% set current_profile = current_profile(user) %}
+{% endif %}
 <header
         {% if class_header is defined %}
         class="{{ class_header }}"
@@ -43,7 +46,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown">
                             <a class="dropdown-item" href="{{ path('back_profile') }}">{{ "action.profile.to"|trans() }}</a>
-                            <a class="dropdown-item" href="{{ path('back_profile_public') }}">{{ "action.profile_public.to"|trans() }}</a>
+                            {% if current_profile is defined and current_profile is not empty and current_profile.slug is not empty %}
+                                <a class="dropdown-item" href="{{ path('one_profile',  {'slug': current_profile.slug}) }}">{{ "action.profile_public.to"|trans() }}</a>
+                            {% endif %}
                             <a class="dropdown-item" href="{{ path('logout') }}">{{ "action.signOut"|trans() }}</a>
                         </div>
                     </li>

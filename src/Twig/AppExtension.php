@@ -2,11 +2,17 @@
 
 namespace App\Twig;
 
+use DateTime;
+use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
+/**
+ * Class AppExtension
+ * @package App\Twig
+ */
 class AppExtension extends AbstractExtension
 {
 
@@ -20,28 +26,44 @@ class AppExtension extends AbstractExtension
         $this->translator = $translator;
     }
 
-    public function getFilters()
+    /**
+     * @return array
+     */
+    public function getFilters(): array
     {
         return [
             new TwigFilter('age', [$this, 'formatAge']),
         ];
     }
 
-    public function getFunctions()
+    /**
+     * @return array
+     */
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('period_start', [$this, 'periodStart']),
+            new TwigFunction('current_profile', [ProfileRuntime::class, 'currentProfile'])
         ];
     }
 
-    public function formatAge($birthDate)
+    /**
+     * @param DateTime $birthDate
+     * @return int
+     * @throws \Exception
+     */
+    public function formatAge(DateTime $birthDate): int
     {
-        $today = new \DateTime();
+        $today = new DateTime();
         $interval = $today->diff($birthDate);
         return $interval->y;
     }
 
-    public function periodStart($start, $end)
+    /**
+     * @param DateTime|null $end
+     * @return string
+     */
+    public function periodStart(?DateTime $end): string
     {
         if (empty($end)) {
             $return = $this->translator->trans('message.start.without_end');

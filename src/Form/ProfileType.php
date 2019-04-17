@@ -103,7 +103,8 @@ class ProfileType extends AbstractType
             ])
 
             ->add('presentation', RichTextType::class, [
-                'data_class' => Profile::class
+                'data_class' => Profile::class,
+                'label' => 'label.presentation'
             ])
             ->add('profilePicture', FileGroupType::class, [
                 'label' => 'label.profile_picture',
@@ -147,7 +148,10 @@ class ProfileType extends AbstractType
         ;
     }
 
-    public function onPreSetData(FormEvent $event)
+    /**
+     * @param FormEvent $event
+     */
+    public function onPreSetData(FormEvent $event): void
     {
 
         /** @var Profile $data */
@@ -163,7 +167,10 @@ class ProfileType extends AbstractType
         }
     }
 
-    public function onPostSubmit(FormEvent $event)
+    /**
+     * @param FormEvent $event
+     */
+    public function onPostSubmit(FormEvent $event): void
     {
 
         /** @var Profile $data */
@@ -182,7 +189,7 @@ class ProfileType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(array(
             'data_class' => Profile::class,

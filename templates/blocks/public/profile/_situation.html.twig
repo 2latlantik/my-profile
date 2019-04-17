@@ -1,0 +1,22 @@
+<div class="cv__block">
+    <div class="cv__title">
+        {{ 'label.profile.situation'|trans }}
+    </div>
+    <div class="cv__body padding_point">
+        {% if situationState is not empty %}
+            {{ ('label.situation_state.' ~ situationState)|trans([], 'form') }}
+        {% endif %}
+    </div>
+    <div class="cv__body">
+        {% if situationGoal == 'active_search' %}
+            <span class="point point--success"></span>
+        {% elseif situationGoal == 'listen_opportunity' %}
+            <span class="point point--warning"></span>
+        {% elseif situationGoal == 'not_listen_opportunity' %}
+            <span class="point point--danger"></span>
+        {% endif %}
+        {% if situationGoal is not empty %}
+            {{ ('label.situation_goal.' ~ situationGoal)|trans([], 'form') }}
+        {% endif %}
+    </div>
+</div>

@@ -33,9 +33,9 @@
 }
 
 
-@media (max-height: 540px) {
+@media (max-height: 600px) {
   .index-main-content {
-    min-height: 54rem;
+   // min-height: 60rem;
   }
   footer {
     &.index, &.security {
