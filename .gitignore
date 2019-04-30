@@ -1,6 +1,7 @@
 
 ###> symfony/framework-bundle ###
 .env
+/lib
 /public/bundles/
 /public/.htaccess
 /src/Migrations

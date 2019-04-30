@@ -2,6 +2,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Delatlantik\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,14 +25,19 @@ class UserType extends AbstractType
             ])
             ->add('username', TextType::class, [
                 'label' => 'label.username'
-
-
             ])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'label.password'),
                 'second_options' => array('label' => 'label.password_repeat'),
             ))
+            ->add('captcha', RecaptchaSubmitType::class, [
+                'label' => 'action.register.do',
+                'translation_domain' => 'messages',
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

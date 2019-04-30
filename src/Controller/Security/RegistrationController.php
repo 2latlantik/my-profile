@@ -54,9 +54,23 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
 
+        $response = new Response();
+
+        $policy = "default-src http://* 'self' https://www.google.com/ https://www.gstatic.com/  'unsafe-inline'"
+            ." 'unsafe-eval';"
+            . "script-src 'self' https://www.google.com/ https://www.gstatic.com/ 'unsafe-inline' 'unsafe-eval';"
+            . "frame-src 'self' https://www.google.com/recaptcha/ ;"
+            . "style-src 'self' https://www.google.com/recaptcha/;";
+
+        $response->headers->set("Content-Security-Policy", $policy);
+        $response->headers->set("X-Content-Security-Policy", $policy);
+        $response->headers->set("X-WebKit-CSP", $policy);
+
+
         return $this->render(
             'security/register.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView()),
+            $response
         );
     }
 
