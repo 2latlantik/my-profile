@@ -7,6 +7,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         {% endblock %}
+        {% include 'blocks/google/_analyctics.html.twig' %}
     </head>
     <body {% block classbody %}{% endblock %}>
         {% block body %}{% endblock %}
