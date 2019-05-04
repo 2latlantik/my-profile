@@ -30,8 +30,10 @@ class AuthenticationController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function passwordRequest(Request $request) :Response
-    {
+    public function passwordRequest(
+        Request $request,
+        EventDispatcherInterface $dispatcher
+    ) :Response {
         $form  = $this->createFormBuilder()
             ->add('mail', EmailType::class, array(
                 'label' => 'label.email',
@@ -59,7 +61,7 @@ class AuthenticationController extends AbstractController
                 $em->flush();
 
                 $event = new GenericEvent($token);
-                $this->get('event_dispatcher')->dispatch('user.password_requested', $event);
+                $dispatcher->dispatch('user.password_requested', $event);
 
                 $this->addFlash('success', 'success.user.password_requested_sent');
                 return $this->redirectToRoute('homepage');
