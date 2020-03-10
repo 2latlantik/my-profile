@@ -56,9 +56,11 @@ class RegistrationController extends AbstractController
 
         $response = new Response();
 
-        $policy = "default-src http://* 'self' https://www.google.com/ https://www.gstatic.com/  'unsafe-inline'"
+        $policy = "default-src http://* 'self' https://www.google.com/ https://www.gstatic.com/"
+            ."https://www.googletagmanager.com/ 'unsafe-inline'"
             ." 'unsafe-eval';"
-            . "script-src 'self' https://www.google.com/ https://www.gstatic.com/ 'unsafe-inline' 'unsafe-eval';"
+            . "script-src 'self' https://www.google.com/ https://www.gstatic.com/ "
+            ."https://www.googletagmanager.com/ 'unsafe-inline' 'unsafe-eval';"
             . "frame-src 'self' https://www.google.com/recaptcha/ ;"
             . "style-src 'self' https://www.google.com/recaptcha/;";
 

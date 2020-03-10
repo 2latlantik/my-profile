@@ -1,4 +1,5 @@
 
+
 {% block file_group_widget %}
     {% if multiple == false %}
         {{ form_widget(form.children.files.0) }}
@@ -10,7 +11,7 @@
 {% endblock %}
 
 {% block upload_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         <div class="card upload_context">
             <div class="card-header">
                 <div class="item-pill">
@@ -43,7 +44,7 @@
                 <p class="upload-error alert alert-danger">{{ 'message.upload.error'|trans }}</p>
             </div>
         </div>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock %}
 
 {% block collection__title %}
