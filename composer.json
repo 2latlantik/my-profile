@@ -1,5 +1,7 @@
 {
+    "name": "2latlantik/my-profile",
     "type": "project",
+    "description": "My profile source code",
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
