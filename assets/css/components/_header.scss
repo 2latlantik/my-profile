@@ -15,9 +15,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .left, .center, .right {
+  .left, .right {
     display: flex;
     flex: 1;
+  }
+  .center {
+    display: flex;
+    flex: 2;
   }
   .left {
     font-size: 2rem;
