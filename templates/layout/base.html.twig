@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}{% block page_title '' %} | {% block app_title 'My Profile' %}{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
         {% include 'blocks/google/_analyctics.html.twig' %}
     </head>
     <body {% block classbody %}{% endblock %}>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('build/app.js') }}"></script>
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cd0135308f4e2d2"></script>
     </body>

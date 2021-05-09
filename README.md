@@ -6,6 +6,20 @@ The goal of this project is to evolve at the same rate as my learning on **symfo
 
  - PHP 7.1.3 or higher 
 
+# Installation 
+
+ - git clone
+ - composer install
+ - Config bvatabase parameter in .env file 
+ - php bin/console doctrine:database:create
+ - php bin/console make:migration 
+ - php bin/console doctrine:migrations:migrate
+ 
+ - Install front dependencies
+ 
+ npm install --global yarn
+ yarn install
+
 ## I - Discovery of the new front end component
 
 I relied on the documentation available on the symfony site called  [Managing CSS and Javascript](https://symfony.com/doc/current/frontend.html)

@@ -1,11 +1,13 @@
-require('../css/app.scss');
+//require('../css/app.scss');
 
 // loads the jquery package from node_modules
-var $ = require('jquery');
+const $ = require('jquery');
+
+global.$ = global.jQuery = $;
 
 require('bootstrap');
 require('bootstrap-datepicker');
-import  Quill  from 'quill';
+import Quill from 'quill';
 import FileSend from './Object/FileSend';
 import UploadBlock from './Object/UploadBlock';
 import RichText from './Object/RichText';
@@ -36,7 +38,6 @@ $(document).ready(function() {
             new UploadBlock(child);
         });
     }
-
 });
 
 
@@ -52,6 +53,7 @@ var test = new Quill('.editor--container', {
     placeholder: 'Compose an epic...',
     theme: 'snow'
 });*/
+
 
 let richTexts = document.getElementsByClassName('editor--area');
 Array.from(richTexts).forEach(function(child) {
@@ -72,3 +74,4 @@ Array.from(richTexts).forEach(function(child) {
         child.dataset.instanciate = 'true';
     }
 });
+
