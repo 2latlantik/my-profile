@@ -16,4 +16,5 @@ return [
     Delatlantik\RichFormSymfonyBundle\RichFormSymfonyBundle::class => ['all' => true],
     Delatlantik\RecaptchaBundle\RecaptchaBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true]
 ];
