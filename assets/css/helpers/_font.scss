@@ -1,10 +1,5 @@
-$app-font-path:       "/build/fonts" !default;
 
 @font-face {
   font-family: 'Pacifico';
-  src: url('#{$app-font-path}/Pacifico-Regular.eot') format('embedded-opentype'),
-  url("#{$app-font-path}/Pacifico-Regular.woff2") format('woff2'),
-  url('#{$app-font-path}/Pacifico-Regular.woff') format('woff'),
-  url('#{$app-font-path}/Pacifico-Regular.ttf') format('truetype'),
-  url('#{$app-font-path}/Pacifico-Regular.svg') format('svg');
+  src: url('../../fonts/Pacifico-Regular.ttf') format('truetype');
 }

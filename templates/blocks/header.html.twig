@@ -37,14 +37,15 @@
                         <i class="fa fa-bell-o" aria-hidden="true"></i>
                         <sup class="counter">n</sup>
                     </li>
-                    <li class="profile">
-                        <a href="#" class="link-profile dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true">
+
+                    <li class="profile dropdown">
+                        <a href="#" class="link-profile dropdown-toggle" id="dropdownProfile" data-bs-toggle="dropdown" aria-haspopup="true">
                             <div class="logo">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </div>
                             <span class="user d-none d-sm-inline">{{ user.username }}</span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown">
+                        <div class="dropdown-menu" aria-labelledby="dropdownProfile">
                             <a class="dropdown-item" href="{{ path('back_profile') }}">{{ "action.profile.to"|trans() }}</a>
                             {% if current_profile is defined and current_profile is not empty and current_profile.slug is not empty %}
                                 <a class="dropdown-item" href="{{ path('one_profile',  {'slug': current_profile.slug}) }}">{{ "action.profile_public.to"|trans() }}</a>
