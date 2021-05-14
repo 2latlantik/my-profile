@@ -66,3 +66,6 @@ services:
     App\EventListener\FileListener:
         tags:
             - { name: doctrine.event_listener, event: preFlush }
+
+rich_form_symfony:
+    bootstrap_version: 5
