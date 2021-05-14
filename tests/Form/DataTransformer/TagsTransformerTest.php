@@ -5,18 +5,17 @@ namespace App\Tests\Form\DataTransformer;
 use App\Entity\Tag;
 use App\Form\DataTransformer\TagsTransformer;
 use App\Service\TagManager;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
-class TagsTransformerTest extends  TestCase
+class TagsTransformerTest extends TestCase
 {
 
     public function testCreateTagsArrayFromString()
     {
         $transformer = $this->getMockedTransformer();
-        $tags = $transformer->reverseTransform('Hello, Demo');
+        $tags = $transformer->reverseTransform(array('data' => 'Hello, Demo'));
 
         $this->assertCount(2, $tags);
         $this->assertEquals('Demo', $tags[1]->getName());
@@ -27,7 +26,7 @@ class TagsTransformerTest extends  TestCase
         $tag = new Tag();
         $tag->setName('Chat');
         $transformer = $this->getMockedTransformer([$tag]);
-        $tags = $transformer->reverseTransform('Chat, Chien');
+        $tags = $transformer->reverseTransform(array('data' => 'Chat, Chien'));
 
         $this->assertCount(2, $tags);
         $this->assertSame($tag, $tags[0]);
@@ -37,7 +36,7 @@ class TagsTransformerTest extends  TestCase
     {
         $tags = $this
             ->getMockedTransformer()
-            ->reverseTransform('Demo,, Demo, , Demo, ');
+            ->reverseTransform(array('data' => 'Demo,, Demo, , Demo, '));
 
         $this->assertCount(1, $tags);
     }
@@ -46,7 +45,7 @@ class TagsTransformerTest extends  TestCase
     {
         $tags = $this
             ->getMockedTransformer()
-            ->reverseTransform('Hello,, Demo, , , ');
+            ->reverseTransform(array('data' => 'Hello,, Demo, , , '));
         $this->assertCount(2, $tags);
         $this->assertEquals('Demo', $tags[1]->getName());
     }
