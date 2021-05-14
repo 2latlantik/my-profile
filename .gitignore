@@ -18,7 +18,7 @@
 ###< symfony/webpack-encore-pack ###
 
 ###> symfony/phpunit-bridge ###
-.phpunit
+.phpunit*
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
