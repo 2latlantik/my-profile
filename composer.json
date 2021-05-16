@@ -4,7 +4,7 @@
     "description": "My profile source code",
     "license": "proprietary",
     "require": {
-        "php": "^7.1.3",
+        "php": ">=7.2.5",
         "ext-iconv": "*",
         "2latlantik/recaptcha": "dev-master",
         "2latlantik/rich-form-symfony": "^1.1",
