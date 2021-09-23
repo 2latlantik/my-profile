@@ -52,7 +52,6 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: |
-          composer require --dev symfony/phpunit-bridge
           composer install --no-progress --prefer-dist --optimize-autoloader
           php bin/phpunit install
       - name: Run Tests
