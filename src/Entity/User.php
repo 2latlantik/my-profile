@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * Class User
  * @package App\Entity
  * @ORM\Table(name="user", uniqueConstraints={
- *      @ORM\UniqueConstraint(name="app_user_email", columns="email"),
- *      @ORM\UniqueConstraint(name="app_user_username", columns="username")
+ *      @ORM\UniqueConstraint(name="app_user_email", columns={"email"}),
+ *      @ORM\UniqueConstraint(name="app_user_username", columns={"username"})
  * })
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"})
