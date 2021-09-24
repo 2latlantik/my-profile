@@ -1,11 +1,11 @@
 set -e
 
-vendor/bin/phpunit
+vendor/bin/simple-phpunit
 
 (git push) || true
 
 git checkout production
-git merge master
+git merge main
 
 git push origin production
 
