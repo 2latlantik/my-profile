@@ -1,19 +1,15 @@
 name: Test SSH Connection
 on:
-  push:
-    branches:
-      - 'main'
   workflow_dispatch:
 
 jobs:
   ssh_connection:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to production
+      - name: test appleboy test-ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: whoami
-          #script: 'cd test_ssh && ./test.sh'
