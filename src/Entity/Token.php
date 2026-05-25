@@ -14,25 +14,25 @@ trait Token
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank
      * @TokenableField()
      */
-    protected $token;
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    protected ?string $token = null;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
      */
-    protected $createdAt;
+    #[ORM\Column(name: 'created_at', type: 'datetime')]
+    protected ?\DateTimeInterface $createdAt = null;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expired_at", type="datetime")
      */
-    protected $expiredAt;
+    #[ORM\Column(name: 'expired_at', type: 'datetime')]
+    protected ?\DateTimeInterface $expiredAt = null;
 
     /**
      * @return string
@@ -53,7 +53,7 @@ trait Token
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -61,7 +61,7 @@ trait Token
     /**
      * @param \DateTime $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -69,7 +69,7 @@ trait Token
     /**
      * @return \DateTime
      */
-    public function getExpiredAt(): \DateTime
+    public function getExpiredAt(): ?\DateTimeInterface
     {
         return $this->expiredAt;
     }
@@ -77,7 +77,7 @@ trait Token
     /**
      * @param \DateTime $expiredAt
      */
-    public function setExpiredAt(\DateTime $expiredAt): void
+    public function setExpiredAt(\DateTimeInterface $expiredAt): void
     {
         $this->expiredAt = $expiredAt;
     }

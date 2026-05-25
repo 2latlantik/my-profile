@@ -2,182 +2,93 @@
 
 namespace App\Entity;
 
+use App\Repository\ProfileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToOne;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-/**
- * Class Profile
- * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ProfileRepository")
- */
+#[ORM\Entity(repositoryClass: ProfileRepository::class)]
+#[ORM\Table(name: 'profile')]
 class Profile
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * One Profile has one User.
-     * @OneToOne(targetEntity="App\Entity\User")
-     */
-    private $user;
+    #[ORM\OneToOne(targetEntity: User::class)]
+    private ?User $user = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $surname;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $surname = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $name = null;
 
-    /**
-     * @Gedmo\Slug(fields={"surname", "name"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
+    #[Gedmo\Slug(fields: ['surname', 'name'])]
+    #[ORM\Column(length: 128, unique: true)]
+    private ?string $slug = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $job;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $job = null;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $birthDate;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $birthDate = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $postalCode;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $postalCode = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $city;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $city = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $richTextDelta;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextDelta = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $richTextHtml;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextHtml = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $mail;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $mail = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $phone;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $phone = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $viadeo;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $viadeo = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $linkedin;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $linkedin = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $situationState;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $situationState = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $situationGoal;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $situationGoal = null;
 
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $gender = null;
 
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
-    private $gender;
+    #[ORM\OneToOne(targetEntity: FileGroup::class, cascade: ['persist'], fetch: 'EAGER')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?FileGroup $profilePicture = null;
 
-    /**
-     * One profile has one profilePicture
-     * @OneToOne(targetEntity="App\Entity\FileGroup", cascade={"persist"}, fetch="EAGER")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $profilePicture;
+    #[ORM\OneToMany(targetEntity: SchoolPath::class, mappedBy: 'profile', cascade: ['persist'])]
+    private Collection $schoolPaths;
 
-    /**
-    * @ORM\OneToMany(targetEntity="App\Entity\SchoolPath", mappedBy="profile", cascade={"persist"})
-    */
-    private $schoolPaths;
+    #[ORM\OneToMany(targetEntity: ProfessionalExperience::class, mappedBy: 'profile', cascade: ['persist'])]
+    private Collection $professionnalExperiences;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProfessionalExperience", mappedBy="profile", cascade={"persist"})
-     */
-    private $professionnalExperiences;
+    #[ORM\OneToMany(targetEntity: SkillGroup::class, mappedBy: 'profile', cascade: ['persist'])]
+    private Collection $skillGroups;
 
-    /**
-     *  @ORM\OneToMany(targetEntity="App\Entity\SkillGroup", mappedBy="profile", cascade={"persist"})
-     */
-    private $skillGroups;
+    #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
+    private Collection $tags;
 
-    /**
-     * @var array
-     *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
-     */
-    private $tags;
+    #[ORM\OneToOne(targetEntity: Leisure::class, cascade: ['persist'], fetch: 'EAGER')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Leisure $leisure = null;
 
-    /**
-     * One profile has one Leisure
-     * @OneToOne(targetEntity="App\Entity\Leisure", cascade={"persist"}, fetch="EAGER")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $leisure;
-
-    /**
-     * Profile constructor.
-     */
     public function __construct()
     {
         $this->schoolPaths = new ArrayCollection();
@@ -186,359 +97,209 @@ class Profile
         $this->tags = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
-    public function getId() : ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return null|string
-     */
     public function getSurname(): ?string
     {
         return $this->surname;
     }
 
-    /**
-     * @param string $surname
-     * @return Profile
-     */
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param null|string $name
-     * @return Profile
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * @param null|string $slug
-     * @return Profile
-     */
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getJob(): ?string
     {
         return $this->job;
     }
 
-    /**
-     * @param null|string $job
-     * @return Profile
-     */
     public function setJob(?string $job): self
     {
         $this->job = $job;
-
         return $this;
     }
 
-    /**
-     * @return \DateTimeInterface|null
-     */
     public function getBirthDate(): ?\DateTimeInterface
     {
         return $this->birthDate;
     }
 
-    /**
-     * @param \DateTimeInterface|null $birthDate
-     * @return Profile
-     */
     public function setBirthDate(?\DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    /**
-     * @param null|string $postalCode
-     * @return Profile
-     */
     public function setPostalCode(?string $postalCode): self
     {
         $this->postalCode = $postalCode;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
-    /**
-     * @param null|string $city
-     * @return Profile
-     */
     public function setCity(?string $city): self
     {
         $this->city = $city;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getRichTextDelta(): ?string
     {
         return $this->richTextDelta;
     }
 
-    /**
-     * @param null|string $richTextDelta
-     * @return Profile
-     */
     public function setRichTextDelta(?string $richTextDelta): self
     {
         $this->richTextDelta = $richTextDelta;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getRichTextHtml(): ?string
     {
         return $this->richTextHtml;
     }
 
-    /**
-     * @param null|string $richTextHtml
-     * @return Profile
-     */
     public function setRichTextHtml(?string $richTextHtml): self
     {
         $this->richTextHtml = $richTextHtml;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
-    /**
-     * @param null|string $mail
-     * @return Profile
-     */
     public function setMail(?string $mail): self
     {
         $this->mail = $mail;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    /**
-     * @param null|string $phone
-     * @return Profile
-     */
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getViadeo(): ?string
     {
         return $this->viadeo;
     }
 
-    /**
-     * @param null|string $viadeo
-     * @return Profile
-     */
     public function setViadeo(?string $viadeo): self
     {
         $this->viadeo = $viadeo;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getLinkedin(): ?string
     {
         return $this->linkedin;
     }
 
-    /**
-     * @param null|string $linkedin
-     * @return Profile
-     */
     public function setLinkedin(?string $linkedin): self
     {
         $this->linkedin = $linkedin;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getSituationState(): ?string
     {
         return $this->situationState;
     }
 
-    /**
-     * @param null|string $situationState
-     * @return Profile
-     */
     public function setSituationState(?string $situationState): self
     {
         $this->situationState = $situationState;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getSituationGoal(): ?string
     {
         return $this->situationGoal;
     }
 
-    /**
-     * @param null|string $situationGoal
-     * @return Profile
-     */
     public function setSituationGoal(?string $situationGoal): self
     {
         $this->situationGoal = $situationGoal;
-
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    /**
-     * @param string|null $gender
-     * @return Profile
-     */
-    public function setGender(string $gender = null): self
+    public function setGender(?string $gender): self
     {
         $this->gender = $gender;
-
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser() :User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     * @return Profile
-     */
     public function setUser(User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
-    /**
-     * @return FileGroup
-     */
     public function getProfilePicture(): ?FileGroup
     {
         return $this->profilePicture;
     }
 
-    /**
-     * @param FileGroup $profilePicture
-     * @return Profile
-     */
-    public function setProfilePicture(FileGroup $profilePicture = null): self
+    public function setProfilePicture(?FileGroup $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
         return $this;
     }
 
-    /**
-     * @param SchoolPath $schoolPath
-     * @return Profile
-     */
     public function addSchoolPath(SchoolPath $schoolPath): self
     {
         $this->schoolPaths[] = $schoolPath;
@@ -546,53 +307,33 @@ class Profile
         return $this;
     }
 
-    /**
-     * @param SchoolPath $schoolPAth
-     */
     public function removeSchoolPath(SchoolPath $schoolPath): void
     {
         $this->schoolPaths->removeElement($schoolPath);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSchoolPaths()
+    public function getSchoolPaths(): Collection
     {
         return $this->schoolPaths;
     }
 
-    /**
-     * @param ProfessionalExperience $professionnalExperience
-     * @return Profile
-     */
-    public function addProfessionnalExperience(ProfessionalExperience $professionnalExperience): self
+    public function addProfessionnalExperience(ProfessionalExperience $experience): self
     {
-        $this->professionnalExperiences[] = $professionnalExperience;
-        $professionnalExperience->setProfile($this);
+        $this->professionnalExperiences[] = $experience;
+        $experience->setProfile($this);
         return $this;
     }
 
-    /**
-     * @param ProfessionalExperience $professionnalExperience
-     */
-    public function removeProfessionnalExperience(ProfessionalExperience $professionnalExperience): void
+    public function removeProfessionnalExperience(ProfessionalExperience $experience): void
     {
-        $this->professionnalExperiences->removeElement($professionnalExperience);
+        $this->professionnalExperiences->removeElement($experience);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getProfessionnalExperiences()
+    public function getProfessionnalExperiences(): Collection
     {
         return $this->professionnalExperiences;
     }
 
-    /**
-    * @param SkillGroup $skillGroup
-    * @return Profile
-    */
     public function addSkillGroup(SkillGroup $skillGroup): self
     {
         $this->skillGroups[] = $skillGroup;
@@ -600,67 +341,43 @@ class Profile
         return $this;
     }
 
-    /**
-     * @param SkillGroup $skillGroup
-     */
     public function removeSkillGroup(SkillGroup $skillGroup): void
     {
         $this->skillGroups->removeElement($skillGroup);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSkillGroups()
+    public function getSkillGroups(): Collection
     {
         return $this->skillGroups;
     }
 
-    /**
-     * @param Tag $tag
-     * @return self
-     */
     public function addTag(Tag $tag): self
     {
         $this->tags[] = $tag;
         return $this;
     }
 
-    /**
-     * @param Tag $tag
-     */
     public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTags()
+    public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    /**
-     * @return Leisure
-     */
-    public function getLeisure() :Leisure
+    public function getLeisure(): ?Leisure
     {
-        if (empty($this->leisure)) {
+        if (!$this->leisure) {
             $this->leisure = new Leisure();
         }
         return $this->leisure;
     }
 
-    /**
-     * @param Leisure $leisure
-     * @return Profile
-     */
     public function setLeisure(Leisure $leisure): self
     {
         $this->leisure = $leisure;
-
         return $this;
     }
 }

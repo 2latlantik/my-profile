@@ -2,77 +2,76 @@
 
 namespace App\Entity;
 
+use App\Repository\SchoolPathRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class SchoolPath
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\SchoolPathRepository")
  */
+#[ORM\Entity(repositoryClass: SchoolPathRepository::class)]
 class SchoolPath
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $title = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $school;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $school = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $degree;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $degree = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextDelta;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextDelta = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextHtml;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextHtml = null;
 
     /**
      * @var date
      *
-     * @ORM\Column(type="date")
      */
-    private $start;
+    #[ORM\Column(type: 'date')]
+    private ?\DateTimeInterface $start = null;
 
     /**
      * @var date
      *
-     * @ORM\Column(type="date", nullable=true)
      */
-    private $end;
+    #[ORM\Column(type: 'date', nullable: true)]
+    private ?\DateTimeInterface $end = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="schoolPaths")
-     */
-    private $profile;
+    #[ORM\ManyToOne(targetEntity: Profile::class, inversedBy: 'schoolPaths')]
+    private ?Profile $profile = null;
 
     /**
      * @return int|null
@@ -180,7 +179,7 @@ class SchoolPath
     /**
      * @return null|date
      */
-    public function getStart()
+    public function getStart(): ?\DateTimeInterface
     {
         return $this->start;
     }
@@ -189,7 +188,7 @@ class SchoolPath
      * @param null|\DateTime $start
      * @return SchoolPath
      */
-    public function setStart(?\DateTime $start): self
+    public function setStart(?\DateTimeInterface $start): self
     {
         $this->start = $start;
 
@@ -200,7 +199,7 @@ class SchoolPath
     /**
      * @return null|date
      */
-    public function getEnd()
+    public function getEnd(): ?\DateTimeInterface
     {
         return $this->end;
     }
@@ -209,7 +208,7 @@ class SchoolPath
      * @param null|\DateTime $end
      * @return SchoolPath
      */
-    public function setEnd(?\DateTime $end): self
+    public function setEnd(?\DateTimeInterface $end): self
     {
         $this->end = $end;
 
@@ -229,7 +228,7 @@ class SchoolPath
     /**
      * @return Profile
      */
-    public function getProfile(): Profile
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }

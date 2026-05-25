@@ -1,28 +1,25 @@
 <?php
 namespace App\Entity;
 
+use App\Repository\FileGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class FileGroup
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\FileGroupRepository")
  */
+#[ORM\Entity(repositoryClass: FileGroupRepository::class)]
 class FileGroup
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\File", mappedBy="fileGroup", cascade={"persist"})
-     */
-    private $files;
+    #[ORM\OneToMany(targetEntity: File::class, mappedBy: 'fileGroup', cascade: ['persist'])]
+    private Collection $files;
 
     /**
      * FileGroup constructor.
@@ -62,7 +59,7 @@ class FileGroup
     /**
      * @return mixed
      */
-    public function getFiles()
+    public function getFiles(): Collection
     {
         return $this->files;
     }

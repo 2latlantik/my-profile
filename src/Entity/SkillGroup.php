@@ -2,46 +2,39 @@
 
 namespace App\Entity;
 
+use App\Repository\SkillGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class SkillGroup
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\SkillGroupRepository")
  */
+#[ORM\Entity(repositoryClass: SkillGroupRepository::class)]
 class SkillGroup
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $label = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="skillGroups")
-     */
-    private $profile;
+    #[ORM\ManyToOne(targetEntity: Profile::class, inversedBy: 'skillGroups')]
+    private ?Profile $profile = null;
 
-    /**
-     *  @ORM\OneToMany(
-     *     targetEntity="App\Entity\Skill",
-     *     mappedBy="skillGroup",
-     *     cascade={"persist", "remove"},
-     *     orphanRemoval=true
-     *  )
-     */
-    private $skills;
+    #[ORM\OneToMany(targetEntity: Skill::class, mappedBy: 'skillGroup', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $skills;
 
     /**
      * SkillGroup constructor.
@@ -91,7 +84,7 @@ class SkillGroup
     /**
      * @return Profile
      */
-    public function getProfile(): Profile
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }
@@ -119,7 +112,7 @@ class SkillGroup
     /**
      * @return mixed
      */
-    public function getSkills()
+    public function getSkills(): Collection
     {
         return $this->skills;
     }

@@ -1,8 +1,10 @@
 security:
 
-    encoders:
+    enable_authenticator_manager: true
+
+    password_hashers:
         App\Entity\User:
-            algorithm: bcrypt
+            algorithm: auto
 
     providers:
         my_profile_db:
@@ -13,15 +15,18 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
-            anonymous: true
+
             user_checker: App\Security\UserChecker
+
             form_login:
                 login_path: login
                 check_path: login
-                csrf_token_generator: security.csrf.token_manager
+                enable_csrf: true
                 username_parameter: login_form[_username]
                 password_parameter: login_form[_password]
+
             logout:
                 path: /logout
                 target: /

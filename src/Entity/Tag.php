@@ -2,34 +2,35 @@
 
 namespace App\Entity;
 
+use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Tag
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
+#[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $name = null;
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 
     /**

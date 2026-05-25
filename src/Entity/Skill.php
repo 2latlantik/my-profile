@@ -2,49 +2,48 @@
 
 namespace App\Entity;
 
+use App\Repository\SkillRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Skill
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
  */
+#[ORM\Entity(repositoryClass: SkillRepository::class)]
 class Skill
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SkillGroup", inversedBy="skills")
-     */
-    private $skillGroup;
+    #[ORM\ManyToOne(targetEntity: SkillGroup::class, inversedBy: 'skills')]
+    private ?SkillGroup $skillGroup = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $label = null;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
      */
-    private $progression;
+    #[ORM\Column(type: 'decimal', precision: 5, scale: 2, nullable: true)]
+    private ?float $progression = null;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="not_evaluated", type="boolean", options={"default":"0"})
      */
-    private $notEvaluated;
+    #[ORM\Column(name: 'not_evaluated', type: 'boolean', options: ['default' => '0'])]
+    private bool $notEvaluated = false;
 
     public function __construct()
     {
@@ -72,7 +71,7 @@ class Skill
     /**
      * @return SkillGroup
      */
-    public function getSkillGroup(): SkillGroup
+    public function getSkillGroup(): ?SkillGroup
     {
         return $this->skillGroup;
     }

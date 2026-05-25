@@ -1,26 +1,26 @@
 <?php
 namespace App\Entity;
 
+use App\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class File
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
  */
+#[ORM\Entity(repositoryClass: FileRepository::class)]
 class File
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var UploadedFile
@@ -31,27 +31,25 @@ class File
      *     maxSize="1074000000"
      * )
      */
-    private $file;
+    private ?UploadedFile $file = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
      * @Assert\Type("string")
      */
-    private $name;
+    #[ORM\Column(type: 'string')]
+    private ?string $name = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
      */
-    private $path;
+    #[ORM\Column(type: 'string')]
+    private ?string $path = null;
 
-    /**
-     * @ManyToOne(targetEntity="App\Entity\FileGroup", inversedBy="files")
-     */
-    private $fileGroup;
+    #[ORM\ManyToOne(targetEntity: FileGroup::class, inversedBy: 'files')]
+    private ?FileGroup $fileGroup = null;
 
     /**
      * @return int|null

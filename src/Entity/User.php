@@ -1,180 +1,105 @@
 <?php
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-/**
- * Class User
- * @package App\Entity
- * @ORM\Table(name="user", uniqueConstraints={
- *      @ORM\UniqueConstraint(name="app_user_email", columns={"email"}),
- *      @ORM\UniqueConstraint(name="app_user_username", columns={"username"})
- * })
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"email"})
- * @UniqueEntity(fields={"username"})
- */
-class User implements UserInterface, \Serializable
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: 'user')]
+#[UniqueEntity(fields: ['email'])]
+#[UniqueEntity(fields: ['username'])]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank
-     */
-    private $username;
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank]
+    private ?string $username = null;
 
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
+    // Non persisté : mot de passe en clair
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 4096)]
+    private ?string $plainPassword = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $password = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email
-     * @Assert\NotBlank
-     * @Assert\Length(max=255, maxMessage="validator.email.max_length")
-     */
-    private $email;
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
+    #[Assert\Length(max: 255)]
+    private ?string $email = null;
 
-    /**
-     * @var array
-     *
-     * @ORM\Column(type="json_array")
-     */
-    private $roles;
+    #[ORM\Column(type: 'json')]
+    private array $roles = ['ROLE_USER'];
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
+    #[ORM\Column(type: 'boolean')]
+    private bool $isActive = false;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="registered_at", type="datetime", nullable=true)
-     */
-    private $registeredAt;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $registeredAt = null;
 
-    /**
-     * User constructor.
-     *
-     * @param bool $isActive
-     * @param string $registeredAt
-     */
     public function __construct(bool $isActive = false, string $registeredAt = 'now')
     {
         $this->isActive = $isActive;
-        $this->registeredAt = new \DateTime($registeredAt);
-        $this->roles = ['ROLE_USER'];
+        $this->registeredAt = new \DateTimeImmutable($registeredAt);
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->email ?: '';
+        return $this->email ?? '';
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * String representation of object
-     * @link http://php.net/manual/en/serializable.serialize.php
-     * @return string the string representation of the object or null
-     * @since 5.1.0
-     */
-    public function serialize()
+    /** Modern Symfony serialization */
+    public function __serialize(): array
     {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-        ));
+        return [
+            'id'       => $this->id,
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
     }
 
-    /**
-     * Constructs the object
-     * @link http://php.net/manual/en/serializable.unserialize.php
-     * @param string $serialized <p>
-     * The string representation of the object.
-     * </p>
-     * @return void
-     * @since 5.1.0
-     */
-    public function unserialize($serialized)
+    public function __unserialize(array $data): void
     {
-        list(
+        [
             $this->id,
             $this->username,
-            $this->password,
-        ) = unserialize($serialized);
+            $this->password
+        ] = $data + [null, null, null];
     }
 
-    /**
-     * Returns the roles granted to the user.
-     *
-     * @return array roles
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
 
-        if (!in_array('ROLE_USER', $roles)) {
+        if (!in_array('ROLE_USER', $roles, true)) {
             $roles[] = 'ROLE_USER';
         }
+
         return $roles;
     }
 
-    /**
-     * @param array $roles
-     * @return User
-     */
-    public function setRoles(array $roles): User
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
         return $this;
     }
 
-    /**
-     * @param string $role
-     * @return User
-     */
-    public function addRole(string $role): User
+    public function addRole(string $role): self
     {
         if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
@@ -182,147 +107,90 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername(string $username) :User
+    public function getUserIdentifier(): string
     {
-        $this->username = $username;
-        return $this;
+        return (string) $this->username;
     }
 
-    /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string username
-     */
+    /** Compatibilité UserInterface */
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this->getUserIdentifier();
     }
 
-    /**
-     * @return string
-     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
-    /**
-     * @param string $plainPassword
-     * @return User
-     */
-    public function setPlainPassword(string $plainPassword): User
+    public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
         return $this;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword(string $password): User
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string password
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail(string $email): User
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        $this->plainPassword = null;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
     {
         $this->email = $email;
         return $this;
     }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail() :?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
-    {
-    }
-
-    /**
-     * set isActive
-     *
-     * @param bool $isActive
-     * @return User
-     */
-    public function setIsActive(bool $isActive): User
-    {
-        $this->isActive = $isActive;
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return bool
-     */
     public function getIsActive(): bool
     {
         return $this->isActive;
     }
 
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
+    public function setIsActive(bool $isActive): self
     {
+        $this->isActive = $isActive;
+        return $this;
     }
 
-    /**
-     * @Assert\Callback
-     * @param ExecutionContextInterface $context
-     * @param $payload
-     */
-    public function validate(ExecutionContextInterface $context, $payload)
+    public function getRegisteredAt(): ?\DateTimeInterface
     {
-        if (strpos($this->username, '@') !== false) {
+        return $this->registeredAt;
+    }
+
+    public function setRegisteredAt(?\DateTimeInterface $registeredAt): self
+    {
+        $this->registeredAt = $registeredAt;
+        return $this;
+    }
+
+    #[Assert\Callback]
+    public function validate(ExecutionContextInterface $context, $payload): void
+    {
+        if (str_contains((string) $this->username, '@')) {
             $context->buildViolation('validators.user.username')
                 ->atPath('username')
                 ->addViolation();
         }
     }
+
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
 }

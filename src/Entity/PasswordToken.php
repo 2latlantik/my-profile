@@ -2,14 +2,15 @@
 namespace App\Entity;
 
 use App\Annotation\Tokenable;
+use App\Repository\PasswordTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class PasswordToken
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\PasswordTokenRepository")
  * @Tokenable(duration_validity="+2 day")
  */
+#[ORM\Entity(repositoryClass: PasswordTokenRepository::class)]
 class PasswordToken
 {
     use Token;
@@ -17,26 +18,23 @@ class PasswordToken
     /**
      * @var int
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var User
      *
-     * @ORM\ManyToOne(
-     *      targetEntity="App\Entity\User",
-     *      fetch="EAGER"
-     * )
      */
-    private $user;
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EAGER')]
+    private ?User $user = null;
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -44,7 +42,7 @@ class PasswordToken
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
