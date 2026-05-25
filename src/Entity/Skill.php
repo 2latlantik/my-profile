@@ -5,17 +5,9 @@ namespace App\Entity;
 use App\Repository\SkillRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Class Skill
- * @package App\Entity
- */
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 class Skill
 {
-    /**
-     * @var int
-     *
-     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -24,113 +16,74 @@ class Skill
     #[ORM\ManyToOne(targetEntity: SkillGroup::class, inversedBy: 'skills')]
     private ?SkillGroup $skillGroup = null;
 
-    /**
-     * @var string
-     *
-     */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $label = null;
 
-    /**
-     * @var float
-     *
-     */
+    // Stocké en DECIMAL (string) mais manipulé en float côté PHP
     #[ORM\Column(type: 'decimal', precision: 5, scale: 2, nullable: true)]
-    private ?float $progression = null;
+    private ?string $progression = null;
 
-    /**
-     * @var boolean
-     *
-     */
     #[ORM\Column(name: 'not_evaluated', type: 'boolean', options: ['default' => '0'])]
     private bool $notEvaluated = false;
 
     public function __construct()
     {
-        $this->notEvaluated = 0;
+        $this->notEvaluated = false;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getId() : ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param SkillGroup $skillGroup
-     * @return self
-     */
-    public function setSkillGroup(SkillGroup $skillGroup): self
+    public function setSkillGroup(?SkillGroup $skillGroup): self
     {
         $this->skillGroup = $skillGroup;
         return $this;
     }
 
-    /**
-     * @return SkillGroup
-     */
     public function getSkillGroup(): ?SkillGroup
     {
         return $this->skillGroup;
     }
 
-    /**
-     * @return null|string
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     * @return Skill
-     */
     public function setLabel(?string $label): self
     {
         $this->label = $label;
-
         return $this;
     }
 
     /**
-     * @return null|float
+     * Retourne la progression en float (0.00 → 100.00)
      */
     public function getProgression(): ?float
     {
-        return $this->progression;
+        return $this->progression !== null ? (float) $this->progression : null;
     }
 
     /**
-     * @param null|float $progression
-     * @return Skill
+     * Accepte un float mais stocke un DECIMAL propre
      */
     public function setProgression(?float $progression): self
     {
-        $this->progression = $progression;
+        $this->progression = $progression !== null
+            ? number_format($progression, 2, '.', '')
+            : null;
 
         return $this;
     }
 
-    /**
-     * set notEvaluated
-     *
-     * @param bool $notEvaluated
-     * @return Skill
-     */
-    public function setNotEvaluated(bool $notEvaluated): Skill
+    public function setNotEvaluated(bool $notEvaluated): self
     {
         $this->notEvaluated = $notEvaluated;
         return $this;
     }
 
-    /**
-     * Get notEvaluated
-     *
-     * @return bool
-     */
     public function getNotEvaluated(): bool
     {
         return $this->notEvaluated;

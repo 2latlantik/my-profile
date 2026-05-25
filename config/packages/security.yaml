@@ -10,6 +10,7 @@ security:
         my_profile_db:
             entity:
                 class: App\Entity\User
+                property: email
 
     firewalls:
         dev:
@@ -17,6 +18,8 @@ security:
             security: false
 
         main:
+
+            provider: my_profile_db
 
             user_checker: App\Security\UserChecker
 

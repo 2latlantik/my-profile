@@ -75,11 +75,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __unserialize(array $data): void
     {
-        [
-            $this->id,
-            $this->username,
-            $this->password
-        ] = $data + [null, null, null];
+        $this->id       = $data['id'] ?? null;
+        $this->username = $data['username'] ?? null;
+        $this->password = $data['password'] ?? null;
     }
 
     public function getRoles(): array
