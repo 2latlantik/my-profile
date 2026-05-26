@@ -5,7 +5,6 @@ use App\Entity\File;
 use App\Form\ProfileType;
 use App\Service\FileManager;
 use App\Service\ProfileManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
@@ -14,26 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class ProfileController
- * @package App\Controller\Back
- */
 class ProfileController extends AbstractController
 {
-
-    /**
-     * @Route(
-     *     "/profile",
-     *     name="back_profile",
-     *     methods={"GET", "POST"}
-     * )
-     * @Security("is_granted('ROLE_USER')")
-     * @param Request $request
-     * @param ProfileManager $profileManager
-     * @return Response
-     */
+    #[Route('/profile', name: 'back_profile', methods: ['GET', 'POST'])]
     public function profilePage(Request $request, ProfileManager $profileManager) :Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $profile = $profileManager->getProfile();
 
         $form = $this->createForm(ProfileType::class, $profile);
@@ -54,15 +39,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route(
-     *     "/profile-public",
-     *     name="back_profile_public",
-     *     methods={"GET"}
-     * )
-     * @param ProfileManager $profileManager
-     * @return Response
-     */
+    #[Route('/profile-public', name: 'back_profile_public', methods: ['GET'])]
     public function profilePagePublic(ProfileManager $profileManager) :Response
     {
         $profile = $profileManager->getProfile();
@@ -72,17 +49,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route(
-     *      "/upload",
-     *     methods={"POST"}
-     * )
-     * @param Request $request
-     * @param FileManager $fileManager
-     * @param TranslatorInterface $translator
-     * @param Profiler $profiler
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
+    #[Route('/upload', methods: ['POST'])]
     public function upload(
         Request $request,
         FileManager $fileManager,

@@ -7,36 +7,28 @@ use Symfony\Component\Security\Core\Exception\DisabledException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * Class UserChecker
- * @package App\Security
- */
 class UserChecker implements UserCheckerInterface
 {
+    public function checkPreAuth(UserInterface $user)
+    {
+        // On ignore les utilisateurs incomplets (désérialisés sans ID)
+        if (!$user instanceof AppUser || !$user->getId()) {
+            return;
+        }
+    }
 
-    /**
-     * @param UserInterface $user
-     */
     public function checkPostAuth(UserInterface $user)
     {
-        if (!$user instanceof AppUser) {
+        // On ignore les utilisateurs incomplets (désérialisés sans ID)
+        if (!$user instanceof AppUser || !$user->getId()) {
             return;
         }
 
+        // Ton contrôle métier : compte désactivé
         if (!$user->getIsActive()) {
             $ex = new DisabledException('security.account.disabled');
             $ex->setUser($user);
             throw $ex;
         }
-    }
-
-    /**
-     * Checks the user account before authentication.
-     *
-     * @throws AccountStatusException
-     */
-    public function checkPreAuth(UserInterface $user)
-    {
-        // TODO: Implement checkPreAuth() method.
     }
 }

@@ -2,77 +2,76 @@
 
 namespace App\Entity;
 
+use App\Repository\ProfessionnalExperienceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ProfessionnalExperience
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ProfessionnalExperienceRepository")
  */
+#[ORM\Entity(repositoryClass: ProfessionnalExperienceRepository::class)]
 class ProfessionalExperience
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $title = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $society;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $society = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
      */
-    private $location;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $location = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextDelta;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextDelta = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextHtml;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextHtml = null;
 
     /**
      * @var date
      *
-     * @ORM\Column(type="date")
      */
-    private $start;
+    #[ORM\Column(type: 'date')]
+    private ?\DateTimeInterface $start = null;
 
     /**
      * @var date
      *
-     * @ORM\Column(type="date", nullable=true)
      */
-    private $end;
+    #[ORM\Column(type: 'date', nullable: true)]
+    private ?\DateTimeInterface $end = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="professionnalExperiences")
-     */
-    private $profile;
+    #[ORM\ManyToOne(targetEntity: Profile::class, inversedBy: 'professionnalExperiences')]
+    private ?Profile $profile = null;
 
     /**
      * @return int|null
@@ -180,7 +179,7 @@ class ProfessionalExperience
     /**
      * @return null|date
      */
-    public function getStart()
+    public function getStart(): ?\DateTimeInterface
     {
         return $this->start;
     }
@@ -189,7 +188,7 @@ class ProfessionalExperience
      * @param null|\DateTime $start
      * @return self
      */
-    public function setStart(?\DateTime $start): self
+    public function setStart(?\DateTimeInterface $start): self
     {
         $this->start = $start;
 
@@ -200,7 +199,7 @@ class ProfessionalExperience
     /**
      * @return null|date
      */
-    public function getEnd()
+    public function getEnd(): ?\DateTimeInterface
     {
         return $this->end;
     }
@@ -209,7 +208,7 @@ class ProfessionalExperience
      * @param null|\DateTime $end
      * @return self
      */
-    public function setEnd(?\DateTime $end): self
+    public function setEnd(?\DateTimeInterface $end): self
     {
         $this->end = $end;
 
@@ -229,7 +228,7 @@ class ProfessionalExperience
     /**
      * @return Profile
      */
-    public function getProfile(): Profile
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }

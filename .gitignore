@@ -3,10 +3,8 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/lib
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/.htaccess
-/src/Migrations
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

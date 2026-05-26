@@ -2,14 +2,15 @@
 namespace App\Entity;
 
 use App\Annotation\Tokenable;
+use App\Repository\UserRegisterTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class UserRegisterToken
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\UserRegisterTokenRepository")
  * @Tokenable(duration_validity="+2 day")
  */
+#[ORM\Entity(repositoryClass: UserRegisterTokenRepository::class)]
 class UserRegisterToken
 {
     use Token;
@@ -17,27 +18,23 @@ class UserRegisterToken
     /**
      * @var int
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var User
      *
-     * @ORM\ManyToOne(
-     *      targetEntity="App\Entity\User",
-     *      fetch="EAGER",
-     *      cascade={"persist"}
-     * )
      */
-    private $user;
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EAGER', cascade: ['persist'])]
+    private ?User $user = null;
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -45,7 +42,7 @@ class UserRegisterToken
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }

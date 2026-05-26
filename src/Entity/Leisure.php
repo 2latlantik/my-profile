@@ -2,37 +2,38 @@
 
 namespace App\Entity;
 
+use App\Repository\LeisureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Leisure
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\LeisureRepository")
  */
+#[ORM\Entity(repositoryClass: LeisureRepository::class)]
 class Leisure
 {
     /**
      * @var int
      *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextDelta;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextDelta = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text", nullable=true)
      */
-    private $richTextHtml;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $richTextHtml = null;
 
     /**
      * @return int|null

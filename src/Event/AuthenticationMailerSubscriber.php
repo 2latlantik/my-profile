@@ -4,6 +4,8 @@ namespace App\Event;
 use App\Entity\UserRegisterToken;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -14,38 +16,19 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AuthenticationMailerSubscriber implements EventSubscriberInterface
 {
 
-    /**
-     * @var \Swift_Mailer
-     */
-    private $mailer;
+    private MailerInterface $mailer;
 
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private TranslatorInterface $translator;
 
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
-    /**
-     * @var string
-     */
-    private $sender;
+    private string $sender;
 
-    /**
-     * RegistrationMailerSubscriber constructor.
-     * @param \Swift_Mailer $mailer
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param TranslatorInterface $translator
-     * @param string $sender
-     */
     public function __construct(
-        \Swift_Mailer $mailer,
+        MailerInterface $mailer,
         UrlGeneratorInterface $urlGenerator,
         TranslatorInterface $translator,
-        $sender
+        string $sender
     ) {
         $this->mailer = $mailer;
         $this->urlGenerator = $urlGenerator;
@@ -96,11 +79,11 @@ class AuthenticationMailerSubscriber implements EventSubscriberInterface
             'mail'
         );
 
-        $message = ( new \Swift_Message())
-            ->setSubject($subject)
-            ->setTo($userRegisterToken->getUser()->getEmail())
-            ->setFrom($this->sender)
-            ->setBody($body, 'text/html');
+        $message = (new Email())
+            ->subject($subject)
+            ->to($userRegisterToken->getUser()->getEmail())
+            ->from($this->sender)
+            ->html($body);
 
         $this->mailer->send($message);
     }
@@ -123,11 +106,11 @@ class AuthenticationMailerSubscriber implements EventSubscriberInterface
             'mail'
         );
 
-        $message = ( new \Swift_Message())
-            ->setSubject($subject)
-            ->setTo($userRegisterToken->getUser()->getEmail())
-            ->setFrom($this->sender)
-            ->setBody($body, 'text/html');
+        $message = (new Email())
+            ->subject($subject)
+            ->to($userRegisterToken->getUser()->getEmail())
+            ->from($this->sender)
+            ->html($body);
 
         $this->mailer->send($message);
     }
