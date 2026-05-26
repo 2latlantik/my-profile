@@ -5,7 +5,7 @@ use App\Annotation\TokenableManager;
 use App\Entity\User;
 use App\Entity\UserRegisterToken;
 use App\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Repository\UserRegisterTokenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
@@ -16,9 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
-    /**
-     * @Route("/register", name="security_registration_register")
-     */
+    #[Route('/register', name: 'security_registration_register')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
@@ -70,15 +68,18 @@ class RegistrationController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/user-activate/{key}", name="security_registration_activation")
-     * @ParamConverter("token", options={"mapping": {"key": "token"}})
-     */
+    #[Route('/user-activate/{key}', name: 'security_registration_activation')]
     public function activation(
-        UserRegisterToken $token,
+        string $key,
+        UserRegisterTokenRepository $userRegisterTokenRepository,
         TokenableManager $tokenManager,
         EventDispatcherInterface $dispatcher
     ): Response {
+        $token = $userRegisterTokenRepository->findOneBy(['token' => $key]);
+        if ($token === null) {
+            throw $this->createNotFoundException();
+        }
+
         /** @var User $user */
         $user = $token->getUser();
 
@@ -113,12 +114,14 @@ class RegistrationController extends AbstractController
     }
 
 
-    /**
-     * @Route("/user-activate/new/{key}", name="security_registration_token")
-     * @ParamConverter("token", options={"mapping": {"key": "token"}})
-     */
-    public function token(UserRegisterToken $token): Response
+    #[Route('/user-activate/new/{key}', name: 'security_registration_token')]
+    public function token(string $key, UserRegisterTokenRepository $userRegisterTokenRepository, EventDispatcherInterface $dispatcher): Response
     {
+        $token = $userRegisterTokenRepository->findOneBy(['token' => $key]);
+        if ($token === null) {
+            throw $this->createNotFoundException();
+        }
+
         if ($token->getUser()->getIsActive()) {
             $this->addFlash('warning', 'warning.user.account_let_confirmed');
             return $this->redirectToRoute('homepage');
@@ -131,9 +134,8 @@ class RegistrationController extends AbstractController
         $em->persist($newToken);
         $em->flush();
 
-        // ✔️ plus de $this->get('event_dispatcher') (déprécié)
         $event = new GenericEvent($newToken);
-        $this->container->get('event_dispatcher')->dispatch($event, 'user.account_token_requested');
+        $dispatcher->dispatch($event, 'user.account_token_requested');
 
         $this->addFlash('success', 'success.user.account_token_sent');
 

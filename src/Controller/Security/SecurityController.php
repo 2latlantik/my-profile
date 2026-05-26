@@ -3,7 +3,6 @@ namespace App\Controller\Security;
 
 use App\Form\ChangePasswordType;
 use App\Form\LoginForm;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("login", name="login")
-     */
+    #[Route('login', name: 'login')]
     public function login(Request $request, AuthenticationUtils $authUtils): Response
     {
         $form = $this->createForm(LoginForm::class);
@@ -39,10 +36,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("change-password", name="change_password")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route('change-password', name: 'change_password')]
     public function changePassword(
         Request $request,
         TokenStorageInterface $token,
@@ -50,6 +44,7 @@ class SecurityController extends AbstractController
         TranslatorInterface $translator,
         EntityManagerInterface $em
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $token->getToken()->getUser();
 
         $form = $this->createForm(ChangePasswordType::class, $user);

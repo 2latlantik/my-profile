@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller\Security;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -17,12 +16,11 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use App\Annotation\TokenableManager;
 use App\Entity\PasswordToken;
 use App\Entity\User;
+use App\Repository\PasswordTokenRepository;
 
 class AuthenticationController extends AbstractController
 {
-    /**
-     * @Route("/password-lost", name="security_authentication_password_request")
-     */
+    #[Route('/password-lost', name: 'security_authentication_password_request')]
     public function passwordRequest(
         Request $request,
         EventDispatcherInterface $dispatcher
@@ -70,17 +68,20 @@ class AuthenticationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/user-password-new/{key}", name="security_authentication_password_define")
-     * @ParamConverter("token", options={"mapping": {"key": "token"}})
-     */
+    #[Route('/user-password-new/{key}', name: 'security_authentication_password_define')]
     public function passwordDefine(
-        PasswordToken $token,
+        string $key,
         Request $request,
+        PasswordTokenRepository $passwordTokenRepository,
         TokenableManager $tokenManager,
         EventDispatcherInterface $dispatcher,
         UserPasswordHasherInterface $passwordHasher
     ): Response {
+        $token = $passwordTokenRepository->findOneBy(['token' => $key]);
+        if ($token === null) {
+            throw $this->createNotFoundException();
+        }
+
         if ($tokenManager->getState($token) === 'expired') {
             $this->addFlash('warning', 'user.password_request_expired');
             return $this->redirectToRoute('homepage');
