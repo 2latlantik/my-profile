@@ -21,7 +21,6 @@
     "symfony/filesystem": "^5.4",
     "symfony/flex": "^2.4",
     "symfony/form": "^5.4",
-    "symfony/framework-bundle": "^5.4",
     "symfony/mailer": "^5.4",
     "symfony/maker-bundle": "^1.0",
     "symfony/monolog-bundle": "^3.0",
@@ -71,7 +70,8 @@
   "scripts": {
     "auto-scripts": {
       "cache:clear": "symfony-cmd",
-      "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+      "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
     "post-install-cmd": [
       "@auto-scripts"
@@ -89,8 +89,7 @@
   "extra": {
     "symfony": {
       "id": "01C45GEECYPQR446X1PMD7J287",
-      "allow-contrib": false,
-      "require": "5.4.*"
+      "allow-contrib": false
     }
   }
 }

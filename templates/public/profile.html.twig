@@ -86,9 +86,9 @@
                                     <h4>{{ pe.title }} </h4>
                                     <div class="cv__section__subtitle">{{ pe.society }}</div>
                                     <div class="cv__section__mention">
-                                        {{ period_start(pe.end) }} {{ pe.start|localizeddate('none', 'none', null, null, 'MMMM Y') }}
+                                        {{ period_start(pe.end) }} {{ pe.start|format_date(pattern='MMMM y') }}
                                         {% if pe.end is not empty %}
-                                            {{ 'message.end'|trans }} {{ pe.end|localizeddate('none', 'none', null, null, 'MMMM Y') }}
+                                            {{ 'message.end'|trans }} {{ pe.end|format_date(pattern='MMMM y') }}
                                         {% endif %}
                                     </div>
                                     {{ pe.richTextHtml|raw }}
